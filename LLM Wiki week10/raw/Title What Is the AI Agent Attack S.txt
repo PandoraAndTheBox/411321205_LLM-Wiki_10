@@ -1,0 +1,1024 @@
+Title: What Is the AI Agent Attack Surface?
+
+URL Source: https://www.paloaltonetworks.com/cyberpedia/ai-agent-attack-surface
+
+Markdown Content:
+[___](https://www.paloaltonetworks.com/cyberpedia/ai-agent-attack-surface#)
+
+[Build what's next with Claude. Secure it with Palo Alto Networks. Discover how.](https://www.paloaltonetworks.com/secure-claude)
+
+[PHP attacks stopped before Day 1 with Frontier Virtual Patching. Start today.](https://www.paloaltonetworks.com/network-security/advanced-threat-prevention)
+
+[](https://www.paloaltonetworks.com/)
+
+*   [](https://www.paloaltonetworks.com/)
+*   [Products](https://www.paloaltonetworks.com/cyberpedia/ai-agent-attack-surface#)
+
+ Products  
+
+ AI Security 
+
+[![Image 1: AI Security logo](https://www.paloaltonetworks.com/content/dam/pan/en_US/images/logos/nav/prisma-AIRS-logo-nav.svg)](https://www.paloaltonetworks.com/ai-security/prisma-airs)
+
+[AI Security Platform](https://www.paloaltonetworks.com/ai-security/prisma-airs)
+    *   [AI Gateway](https://www.paloaltonetworks.com/ai-security/ai-gateway)
+    *   [AI Supply Chain Security](https://www.paloaltonetworks.com/ai-security/ai-supply-chain-security)
+    *   [AI Red Teaming](https://www.paloaltonetworks.com/ai-security/ai-red-teaming)
+    *   [AI Runtime Security](https://www.paloaltonetworks.com/ai-security/ai-runtime-security)
+    *   [Agent Identity Security](https://www.paloaltonetworks.com/ai-security/agent-identity-security)
+    *   [AI Posture Management](https://www.paloaltonetworks.com/prisma/cloud/ai-spm)
+    *   [Agentic Endpoint Security](https://www.paloaltonetworks.com/cortex/agentic-endpoint-security)
+
+Secure GenAI Tools
+
+    *   [Prisma Browser](https://www.paloaltonetworks.com/sase/prisma-browser)
+
+ Network Security 
+
+[![Image 2: Network Security logo](https://www.paloaltonetworks.com/content/dam/pan/en_US/images/logos/nav/strata-logo-nav.svg)](https://www.paloaltonetworks.com/network-security)
+
+[Secure the Network](https://www.paloaltonetworks.com/network-security/next-generation-firewall)
+    *   [Hardware Firewalls](https://www.paloaltonetworks.com/network-security/hardware-firewall-innovations)
+    *   [Software Firewalls](https://www.paloaltonetworks.com/network-security/software-firewalls)
+    *   [Strata Cloud Manager](https://www.paloaltonetworks.com/network-security/strata-cloud-manager)
+    *   [OT / Industrial Security](https://www.paloaltonetworks.com/network-security/ot-security-solution)
+    *   [Device & IoT Security](https://www.paloaltonetworks.com/network-security/device-security)
+    *   [5G Security](https://www.paloaltonetworks.com/network-security/5g-security)
+    *   [Managed Firewalls - Azure](https://www.paloaltonetworks.com/network-security/cloud-ngfw-for-azure)
+    *   [Managed Firewalls - AWS](https://www.paloaltonetworks.com/network-security/cloud-ngfw)
+
+[Cloud-Delivered Security Services](https://www.paloaltonetworks.com/network-security/security-subscriptions)
+    *   [Advanced Threat Prevention](https://www.paloaltonetworks.com/network-security/advanced-threat-prevention)
+    *   [Advanced URL Filtering](https://www.paloaltonetworks.com/network-security/advanced-url-filtering)
+    *   [Advanced WildFire](https://www.paloaltonetworks.com/network-security/advanced-wildfire)
+    *   [Advanced DNS Security](https://www.paloaltonetworks.com/network-security/advanced-dns-security)
+    *   [Advanced IP Defense](https://www.paloaltonetworks.com/network-security/advanced-ip-defense)
+    *   [Quantum Safe Security](https://www.paloaltonetworks.com/network-security/quantum-safe-security)
+    *   [Next-Gen Trust Security](https://www.paloaltonetworks.com/network-security/next-gen-trust-security)
+
+ SASE 
+
+[![Image 3: SASE logo](https://www.paloaltonetworks.com/content/dam/pan/en_US/images/logos/nav/prisma-sase-logo-nav.svg)](https://www.paloaltonetworks.com/sase)
+
+[Secure Access (SASE)](https://www.paloaltonetworks.com/sase)
+    *   [Prisma Access (ZTNA)](https://www.paloaltonetworks.com/sase/access)
+    *   [SD-WAN](https://www.paloaltonetworks.com/sase/sd-wan)
+    *   [Prisma Browser](https://www.paloaltonetworks.com/sase/prisma-browser)
+    *   [SaaS Security](https://www.paloaltonetworks.com/sase/saas-security)
+    *   [Enterprise DLP](https://www.paloaltonetworks.com/sase/enterprise-data-loss-prevention)
+
+ Security Operations 
+
+[![Image 4: Security Operations logo](https://www.paloaltonetworks.com/content/dam/pan/en_US/images/logos/nav/cortex-logo-nav.svg)](https://www.paloaltonetworks.com/cortex)
+
+[Security Operations](https://www.paloaltonetworks.com/cortex)
+    *   [AI-Driven SOC](https://www.paloaltonetworks.com/cortex/cortex-xsiam)
+    *   [Extended Detection & Response](https://www.paloaltonetworks.com/cortex/cortex-xdr)
+    *   [Security Orchestration & Automation](https://www.paloaltonetworks.com/cortex/cortex-xsoar)
+    *   [Attack Surface Management](https://www.paloaltonetworks.com/cortex/cortex-xpanse)
+    *   [Exposure Management](https://www.paloaltonetworks.com/cortex/exposure-management)
+    *   [Email Security](https://www.paloaltonetworks.com/cortex/advanced-email-security)
+    *   [Threat Intelligence Management](https://www.paloaltonetworks.com/cortex/threat-intel-management)
+    *   [Agentic-first Automation](https://www.paloaltonetworks.com/cortex/agentix)
+    *   [Identity Threat Detection and Response](https://www.paloaltonetworks.com/cortex/itdr)
+
+[Endpoint Security](https://www.paloaltonetworks.com/cortex/endpoint-protection)
+    *   [Endpoint Protection](https://www.paloaltonetworks.com/cortex/endpoint-protection)
+    *   [Agentic Endpoint Security](https://www.paloaltonetworks.com/cortex/agentic-endpoint-security)
+    *   [Ransomware Protection](https://www.paloaltonetworks.com/cortex/ransomware-protection)
+    *   [Digital Forensics](https://www.paloaltonetworks.com/cortex/digital-forensics)
+
+[Data Security](https://www.paloaltonetworks.com/cortex/data-security)
+
+ Cloud Security 
+
+[![Image 5: Cloud Security logo](https://www.paloaltonetworks.com/content/dam/pan/en_US/images/logos/nav/cortex-cloud-logo-nav.svg)](https://www.paloaltonetworks.com/cortex/cloud)
+
+[Application Security Overview](https://www.paloaltonetworks.com/cortex/cloud/application-security)
+    *   [Application Security Posture Management](https://www.paloaltonetworks.com/cortex/cloud/application-security-posture-management)
+    *   [Software Supply Chain Security](https://www.paloaltonetworks.com/cortex/cloud/software-supply-chain-security)
+    *   [Infrastructure-as-Code (IaC) Security](https://www.paloaltonetworks.com/cortex/cloud/infrastructure-as-code-security)
+    *   [Software Composition Analysis](https://www.paloaltonetworks.com/cortex/cloud/software-composition-analysis)
+    *   [Secrets Security](https://www.paloaltonetworks.com/cortex/cloud/secrets-security)
+    *   [Open Partner Ecosystem](https://www.paloaltonetworks.com/cortex/cloud/appsec-partner-ecosystem)
+
+[Cloud Posture Security Overview](https://www.paloaltonetworks.com/cortex/cloud/cloud-posture-security)
+    *   [Cloud Security Posture Management](https://www.paloaltonetworks.com/cortex/cloud/cloud-security-posture-management)
+    *   [Cloud Infrastructure Entitlement Management](https://www.paloaltonetworks.com/cortex/cloud/cloud-infrastructure-entitlement-management)
+    *   [Data Security Posture Management](https://www.paloaltonetworks.com/cortex/cloud/data-security-posture-management)
+    *   [AI Security Posture Management](https://www.paloaltonetworks.com/cortex/cloud/ai-security-posture-management)
+    *   [Vulnerability Management](https://www.paloaltonetworks.com/cortex/cloud/vulnerability-management)
+    *   [Cloud Attack Surface Management](https://www.paloaltonetworks.com/cortex/cloud/attack-surface-management)
+
+[Cloud Runtime Security Overview](https://www.paloaltonetworks.com/cortex/cloud/runtime-security)
+    *   [Cloud Detection and Response](https://www.paloaltonetworks.com/cortex/cloud-detection-and-response)
+    *   [Container & Kubernetes Security](https://www.paloaltonetworks.com/cortex/cloud/kubernetes-and-container-security)
+    *   [Cloud Workload Protection](https://www.paloaltonetworks.com/cortex/cloud/cloud-workload-protection)
+    *   [API Security](https://www.paloaltonetworks.com/cortex/cloud/api-security)
+    *   [Serverless Security](https://www.paloaltonetworks.com/cortex/cloud/serverless-security)
+
+ Observability NEW
+
+[![Image 6: Observability&nbsp;<sup class="branded-text">NEW</sup> logo](https://www.paloaltonetworks.com/content/dam/pan/en_US/images/cortex/xcor/cortex-xcor-logo-nav-2.svg)](https://www.paloaltonetworks.com/cortex/xcor)
+
+Observability & Remediation
+
+    *   [AI-Driven Observability](https://www.paloaltonetworks.com/cortex/xcor/ai-driven-observability)
+    *   [Distributed Tracing](https://www.paloaltonetworks.com/cortex/xcor/distributed-tracing)
+    *   [Log Management](https://www.paloaltonetworks.com/cortex/xcor/log-management)
+    *   [Metrics Monitoring](https://www.paloaltonetworks.com/cortex/xcor/metrics-monitoring)
+
+ Identity Security 
+
+[![Image 7: Identity Security logo](https://www.paloaltonetworks.com/content/dam/pan/en_US/images/logos/nav/idira-logo-nav.svg)](https://www.paloaltonetworks.com/idira)
+
+[Human Identities](https://www.paloaltonetworks.com/idira/human)
+    *   [Modern PAM](https://www.paloaltonetworks.com/idira/human/privileged-access-management)
+    *   [Identity and Access Management](https://www.paloaltonetworks.com/idira/human/identity-and-access-management)
+    *   [Endpoint Privilege Manager](https://www.paloaltonetworks.com/idira/human/endpoint-privilege-manager)
+    *   [Identity Governance](https://www.paloaltonetworks.com/idira/human/identity-governance)
+    *   [Workforce Password Management](https://www.paloaltonetworks.com/idira/human/workforce-password-management)
+    *   [Vendor Privileged Access](https://www.paloaltonetworks.com/idira/human/vendor-privileged-access)
+
+[Machine Identities](https://www.paloaltonetworks.com/idira/machine)
+    *   [Secrets Management](https://www.paloaltonetworks.com/idira/machine/secrets-management)
+    *   [Unified Secrets Governance](https://www.paloaltonetworks.com/idira/machine/unified-secrets-governance)
+    *   [Application Credentials Delivery](https://www.paloaltonetworks.com/idira/machine/application-credentials-delivery)
+
+[Agentic Identities](https://www.paloaltonetworks.com/idira/agentic)
+
+[See All Products](https://www.paloaltonetworks.com/products/products-a-z)
+
+    *   [![Image 8: Company icon](https://www.paloaltonetworks.com/etc/clientlibs/clean/imgs/logo-default-orange.svg) Overview](https://www.paloaltonetworks.com/cyberpedia/ai-agent-attack-surface#products-panel-0)
+    *   [![Image 9: SASE icon](https://www.paloaltonetworks.com/etc/clientlibs/clean/imgs/icon-prisma-blue.svg) AI Security](https://www.paloaltonetworks.com/cyberpedia/ai-agent-attack-surface#products-panel-1)
+    *   [![Image 10: Protect the Modern Workplace icon](https://www.paloaltonetworks.com/etc/clientlibs/clean/imgs/icon-strata.svg) Network Security](https://www.paloaltonetworks.com/cyberpedia/ai-agent-attack-surface#products-panel-2)
+    *   [![Image 11: SASE icon](https://www.paloaltonetworks.com/etc/clientlibs/clean/imgs/icon-prisma-blue.svg) SASE](https://www.paloaltonetworks.com/cyberpedia/ai-agent-attack-surface#products-panel-3)
+    *   [![Image 12: Automate Root-Cause Analysis icon](https://www.paloaltonetworks.com/etc/clientlibs/clean/imgs/icon-cortex.svg) Security Operations](https://www.paloaltonetworks.com/cyberpedia/ai-agent-attack-surface#products-panel-4)
+    *   [![Image 13: Automate Root-Cause Analysis icon](https://www.paloaltonetworks.com/etc/clientlibs/clean/imgs/icon-cortex.svg) Cloud Security](https://www.paloaltonetworks.com/cyberpedia/ai-agent-attack-surface#products-panel-5)
+    *   [Observability NEW](https://www.paloaltonetworks.com/cyberpedia/ai-agent-attack-surface#products-panel-6)
+    *   [![Image 14: Secure Every Identity icon](https://www.paloaltonetworks.com/etc/clientlibs/clean/imgs/icon-idira.svg) Identity Security](https://www.paloaltonetworks.com/cyberpedia/ai-agent-attack-surface#products-panel-7)
+
+[See All Products](https://www.paloaltonetworks.com/products/products-a-z)
+
+[![Image 15: AI Security logo](https://www.paloaltonetworks.com/content/dam/pan/en_US/images/logos/nav/prisma-AIRS-logo-nav.svg) AI Security Discover, assess and protect AI apps, agents and employee use of GenAI tools](https://www.paloaltonetworks.com/ai-security/prisma-airs)
+
+[![Image 16: Network Security logo](https://www.paloaltonetworks.com/content/dam/pan/en_US/images/logos/nav/strata-logo-nav.svg) Network Security AI-powered NetSec with next-gen firewalls, inline defense and unified management](https://www.paloaltonetworks.com/network-security)
+
+[![Image 17: Security Operations logo](https://www.paloaltonetworks.com/content/dam/pan/en_US/images/logos/nav/cortex-logo-nav.svg) Security Operations Stop cyberattackers with the industry's premier platform for autonomous security operations](https://www.paloaltonetworks.com/cortex)
+
+[![Image 18: Observability&nbsp;<sup class="branded-text">NEW</sup> logo](https://www.paloaltonetworks.com/content/dam/pan/en_US/images/cortex/xcor/cortex-xcor-logo-nav-2.svg) Observability & Remediation NEW Prevent downtime with the AI-driven platform that delivers autonomous remediation](https://www.paloaltonetworks.com/cortex/xcor)
+
+[![Image 19: SASE logo](https://www.paloaltonetworks.com/content/dam/pan/en_US/images/logos/nav/prisma-sase-logo-nav.svg) SASE Protect with AI, secure AI use and operate with AI using agentic Prisma SASE](https://www.paloaltonetworks.com/sase)
+
+[![Image 20: Identity Security logo](https://www.paloaltonetworks.com/content/dam/pan/en_US/images/logos/nav/idira-logo-nav.svg) Identity Security Identity security platform to secure every identity: human, machine and agentic](https://www.paloaltonetworks.com/idira)
+
+[![Image 21: Cloud Security logo](https://www.paloaltonetworks.com/content/dam/pan/en_US/images/logos/nav/cortex-cloud-logo-nav.svg) Cloud Security Prevent risks from code to cloud with the leading agentic cloud security platform](https://www.paloaltonetworks.com/cortex/cloud)
+
+[![Image 22: AI Security logo](https://www.paloaltonetworks.com/content/dam/pan/en_US/images/logos/nav/prisma-AIRS-logo-nav.svg)](https://www.paloaltonetworks.com/ai-security/prisma-airs)
+
+[AI Security Platform](https://www.paloaltonetworks.com/ai-security/prisma-airs)
+    *   [AI Gateway](https://www.paloaltonetworks.com/ai-security/ai-gateway)
+    *   [AI Supply Chain Security](https://www.paloaltonetworks.com/ai-security/ai-supply-chain-security)
+    *   [AI Red Teaming](https://www.paloaltonetworks.com/ai-security/ai-red-teaming)
+    *   [AI Runtime Security](https://www.paloaltonetworks.com/ai-security/ai-runtime-security)
+    *   [Agent Identity Security](https://www.paloaltonetworks.com/ai-security/agent-identity-security)
+    *   [AI Posture Management](https://www.paloaltonetworks.com/prisma/cloud/ai-spm)
+    *   [Agentic Endpoint Security](https://www.paloaltonetworks.com/cortex/agentic-endpoint-security)
+
+Secure GenAI Tools
+
+    *   [Prisma Browser](https://www.paloaltonetworks.com/sase/prisma-browser)
+
+[![Image 23: Network Security logo](https://www.paloaltonetworks.com/content/dam/pan/en_US/images/logos/nav/strata-logo-nav.svg)](https://www.paloaltonetworks.com/network-security)
+
+[Secure the Network](https://www.paloaltonetworks.com/network-security/next-generation-firewall)
+    *   [Hardware Firewalls](https://www.paloaltonetworks.com/network-security/hardware-firewall-innovations)
+    *   [Software Firewalls](https://www.paloaltonetworks.com/network-security/software-firewalls)
+    *   [Strata Cloud Manager](https://www.paloaltonetworks.com/network-security/strata-cloud-manager)
+    *   [OT / Industrial Security](https://www.paloaltonetworks.com/network-security/ot-security-solution)
+    *   [Device & IoT Security](https://www.paloaltonetworks.com/network-security/device-security)
+    *   [5G Security](https://www.paloaltonetworks.com/network-security/5g-security)
+    *   [Managed Firewalls - Azure](https://www.paloaltonetworks.com/network-security/cloud-ngfw-for-azure)
+    *   [Managed Firewalls - AWS](https://www.paloaltonetworks.com/network-security/cloud-ngfw)
+
+[Cloud-Delivered Security Services](https://www.paloaltonetworks.com/network-security/security-subscriptions)
+    *   [Advanced Threat Prevention](https://www.paloaltonetworks.com/network-security/advanced-threat-prevention)
+    *   [Advanced URL Filtering](https://www.paloaltonetworks.com/network-security/advanced-url-filtering)
+    *   [Advanced WildFire](https://www.paloaltonetworks.com/network-security/advanced-wildfire)
+    *   [Advanced DNS Security](https://www.paloaltonetworks.com/network-security/advanced-dns-security)
+    *   [Advanced IP Defense](https://www.paloaltonetworks.com/network-security/advanced-ip-defense)
+    *   [Quantum Safe Security](https://www.paloaltonetworks.com/network-security/quantum-safe-security)
+    *   [Next-Gen Trust Security](https://www.paloaltonetworks.com/network-security/next-gen-trust-security)
+
+[![Image 24: SASE logo](https://www.paloaltonetworks.com/content/dam/pan/en_US/images/logos/nav/prisma-sase-logo-nav.svg)](https://www.paloaltonetworks.com/sase)
+
+[Secure Access (SASE)](https://www.paloaltonetworks.com/sase)
+    *   [Prisma Access (ZTNA)](https://www.paloaltonetworks.com/sase/access)
+    *   [SD-WAN](https://www.paloaltonetworks.com/sase/sd-wan)
+    *   [Prisma Browser](https://www.paloaltonetworks.com/sase/prisma-browser)
+    *   [SaaS Security](https://www.paloaltonetworks.com/sase/saas-security)
+    *   [Enterprise DLP](https://www.paloaltonetworks.com/sase/enterprise-data-loss-prevention)
+
+[![Image 25: Security Operations logo](https://www.paloaltonetworks.com/content/dam/pan/en_US/images/logos/nav/cortex-logo-nav.svg)](https://www.paloaltonetworks.com/cortex)
+
+[Security Operations](https://www.paloaltonetworks.com/cortex)
+    *   [AI-Driven SOC](https://www.paloaltonetworks.com/cortex/cortex-xsiam)
+    *   [Extended Detection & Response](https://www.paloaltonetworks.com/cortex/cortex-xdr)
+    *   [Security Orchestration & Automation](https://www.paloaltonetworks.com/cortex/cortex-xsoar)
+    *   [Attack Surface Management](https://www.paloaltonetworks.com/cortex/cortex-xpanse)
+    *   [Exposure Management](https://www.paloaltonetworks.com/cortex/exposure-management)
+    *   [Email Security](https://www.paloaltonetworks.com/cortex/advanced-email-security)
+    *   [Threat Intelligence Management](https://www.paloaltonetworks.com/cortex/threat-intel-management)
+    *   [Agentic-first Automation](https://www.paloaltonetworks.com/cortex/agentix)
+    *   [Identity Threat Detection and Response](https://www.paloaltonetworks.com/cortex/itdr)
+
+[Endpoint Security](https://www.paloaltonetworks.com/cortex/endpoint-protection)
+    *   [Endpoint Protection](https://www.paloaltonetworks.com/cortex/endpoint-protection)
+    *   [Agentic Endpoint Security](https://www.paloaltonetworks.com/cortex/agentic-endpoint-security)
+    *   [Ransomware Protection](https://www.paloaltonetworks.com/cortex/ransomware-protection)
+    *   [Digital Forensics](https://www.paloaltonetworks.com/cortex/digital-forensics)
+
+[Data Security](https://www.paloaltonetworks.com/cortex/data-security)
+
+[![Image 26: Cloud Security logo](https://www.paloaltonetworks.com/content/dam/pan/en_US/images/logos/nav/cortex-cloud-logo-nav.svg)](https://www.paloaltonetworks.com/cortex/cloud)
+
+[Application Security Overview](https://www.paloaltonetworks.com/cortex/cloud/application-security)
+    *   [Application Security Posture Management](https://www.paloaltonetworks.com/cortex/cloud/application-security-posture-management)
+    *   [Software Supply Chain Security](https://www.paloaltonetworks.com/cortex/cloud/software-supply-chain-security)
+    *   [Infrastructure-as-Code (IaC) Security](https://www.paloaltonetworks.com/cortex/cloud/infrastructure-as-code-security)
+    *   [Software Composition Analysis](https://www.paloaltonetworks.com/cortex/cloud/software-composition-analysis)
+    *   [Secrets Security](https://www.paloaltonetworks.com/cortex/cloud/secrets-security)
+    *   [Open Partner Ecosystem](https://www.paloaltonetworks.com/cortex/cloud/appsec-partner-ecosystem)
+
+[Cloud Posture Security Overview](https://www.paloaltonetworks.com/cortex/cloud/cloud-posture-security)
+    *   [Cloud Security Posture Management](https://www.paloaltonetworks.com/cortex/cloud/cloud-security-posture-management)
+    *   [Cloud Infrastructure Entitlement Management](https://www.paloaltonetworks.com/cortex/cloud/cloud-infrastructure-entitlement-management)
+    *   [Data Security Posture Management](https://www.paloaltonetworks.com/cortex/cloud/data-security-posture-management)
+    *   [AI Security Posture Management](https://www.paloaltonetworks.com/cortex/cloud/ai-security-posture-management)
+    *   [Vulnerability Management](https://www.paloaltonetworks.com/cortex/cloud/vulnerability-management)
+    *   [Cloud Attack Surface Management](https://www.paloaltonetworks.com/cortex/cloud/attack-surface-management)
+
+[Cloud Runtime Security Overview](https://www.paloaltonetworks.com/cortex/cloud/runtime-security)
+    *   [Cloud Detection and Response](https://www.paloaltonetworks.com/cortex/cloud-detection-and-response)
+    *   [Container & Kubernetes Security](https://www.paloaltonetworks.com/cortex/cloud/kubernetes-and-container-security)
+    *   [Cloud Workload Protection](https://www.paloaltonetworks.com/cortex/cloud/cloud-workload-protection)
+    *   [API Security](https://www.paloaltonetworks.com/cortex/cloud/api-security)
+    *   [Serverless Security](https://www.paloaltonetworks.com/cortex/cloud/serverless-security)
+
+[![Image 27: Observability&nbsp;<sup class="branded-text">NEW</sup> logo](https://www.paloaltonetworks.com/content/dam/pan/en_US/images/cortex/xcor/cortex-xcor-logo-nav-2.svg)](https://www.paloaltonetworks.com/cortex/xcor)
+
+Observability & Remediation
+
+    *   [AI-Driven Observability](https://www.paloaltonetworks.com/cortex/xcor/ai-driven-observability)
+    *   [Distributed Tracing](https://www.paloaltonetworks.com/cortex/xcor/distributed-tracing)
+    *   [Log Management](https://www.paloaltonetworks.com/cortex/xcor/log-management)
+    *   [Metrics Monitoring](https://www.paloaltonetworks.com/cortex/xcor/metrics-monitoring)
+
+[![Image 28: Identity Security logo](https://www.paloaltonetworks.com/content/dam/pan/en_US/images/logos/nav/idira-logo-nav.svg)](https://www.paloaltonetworks.com/idira)
+
+[Human Identities](https://www.paloaltonetworks.com/idira/human)
+    *   [Modern PAM](https://www.paloaltonetworks.com/idira/human/privileged-access-management)
+    *   [Identity and Access Management](https://www.paloaltonetworks.com/idira/human/identity-and-access-management)
+    *   [Endpoint Privilege Manager](https://www.paloaltonetworks.com/idira/human/endpoint-privilege-manager)
+    *   [Identity Governance](https://www.paloaltonetworks.com/idira/human/identity-governance)
+    *   [Workforce Password Management](https://www.paloaltonetworks.com/idira/human/workforce-password-management)
+    *   [Vendor Privileged Access](https://www.paloaltonetworks.com/idira/human/vendor-privileged-access)
+
+[Machine Identities](https://www.paloaltonetworks.com/idira/machine)
+    *   [Secrets Management](https://www.paloaltonetworks.com/idira/machine/secrets-management)
+    *   [Unified Secrets Governance](https://www.paloaltonetworks.com/idira/machine/unified-secrets-governance)
+    *   [Application Credentials Delivery](https://www.paloaltonetworks.com/idira/machine/application-credentials-delivery)
+
+[Agentic Identities](https://www.paloaltonetworks.com/idira/agentic)
+
+*   [Solutions](https://www.paloaltonetworks.com/cyberpedia/ai-agent-attack-surface#) Solutions  By Use Case  [![Image 29: Drive AI Transformation icon](https://www.paloaltonetworks.com/content/dam/pan/en_US/images/ai-page/teaser-block/teaser-icon-2.svg)Drive AI Transformation Scale enterprise AI adoption across employees, applications and agents with confidence and control](https://www.paloaltonetworks.com/ai-security)[![Image 30: Automate Root-Cause Analysis icon](https://www.paloaltonetworks.com/etc/clientlibs/clean/imgs/icon-cortex.svg)Accelerate Cloud Transformation Build fast and innovate fearlessly with AI-driven protection from code to cloud](https://www.paloaltonetworks.com/cortex/cloud)[![Image 31: Company icon](https://www.paloaltonetworks.com/etc/clientlibs/clean/imgs/logo-default-orange.svg)Secure AI Coding Let AI coding do more, with you in control. Protect data, govern agents and control AI costs](https://www.paloaltonetworks.com/secure-ai-coding) [![Image 32: Secure Every Identity icon](https://www.paloaltonetworks.com/etc/clientlibs/clean/imgs/icon-idira.svg)Secure Every Identity Stop identity-led breaches: Secure human, machine, and agentic identities with zero trust](https://www.paloaltonetworks.com/idira)[![Image 33: Automate Root-Cause Analysis icon](https://www.paloaltonetworks.com/etc/clientlibs/clean/imgs/icon-cortex.svg)Enable Autonomous SOC Fight AI with AI to stop threats at machine speed with the power of analytics and automation](https://www.paloaltonetworks.com/cortex/fight-ai-with-ai)[![Image 34: Company icon](https://www.paloaltonetworks.com/etc/clientlibs/clean/imgs/logo-default-orange.svg)Secure Critical Infrastructure Stop machine-speed threats across OT, 5G and IoT with AI-driven cyber defense](https://www.paloaltonetworks.com/securing-critical-infrastructure) [![Image 35: Protect the Modern Workplace icon](https://www.paloaltonetworks.com/etc/clientlibs/clean/imgs/icon-strata.svg)Protect the Modern Workplace Protect all users, apps, devices and clouds](https://www.paloaltonetworks.com/protect-modern-workplace)[![Image 36: Automate Root-Cause Analysis icon](https://www.paloaltonetworks.com/etc/clientlibs/clean/imgs/icon-cortex.svg)Automate Root-Cause Analysis Respond autonomously to incidents and accelerate remediation with agentic AI](https://www.paloaltonetworks.com/cortex/xcor)[![Image 37: Frontier AI Defense icon](https://www.paloaltonetworks.com/etc/clientlibs/clean/imgs/icon-Unit42.svg)Frontier AI Defense Use defender-grade models to stop AI-speed attacks before they start](https://www.paloaltonetworks.com/unit42/ai-advantage)       
+*   [Services](https://www.paloaltonetworks.com/cyberpedia/ai-agent-attack-surface#)
+
+ Services  
+
+ Security Services 
+
+[![Image 38: Security Services logo](https://www.paloaltonetworks.com/etc/clientlibs/clean/imgs/unit-logo-dark.svg)](https://www.paloaltonetworks.com/unit42)
+
+Prepare for Emerging Risks 
+    *   [AI Security](https://www.paloaltonetworks.com/unit42/strengthen-your-defenses/ai-security-assessment)
+    *   [Frontier AI](https://www.paloaltonetworks.com/unit42/prepare-for-emerging-risks/continuous-frontier-ai-defense)
+    *   [Respond to Cyber Attacks](https://www.paloaltonetworks.com/unit42/respond)
+    *   [Incident Response](https://www.paloaltonetworks.com/unit42/respond/incident-response)
+    *   [Digital Forensics](https://www.paloaltonetworks.com/unit42/respond/digital-forensics)
+    *   [Managed Detection & Response](https://www.paloaltonetworks.com/unit42/respond/managed-detection-response)
+    *   [Managed Threat Hunting](https://www.paloaltonetworks.com/cortex/managed-threat-hunting)
+    *   [Managed XSIAM](https://www.paloaltonetworks.com/cortex/managed-xsiam)
+    *   [Managed Agentic Endpoint Security](https://www.paloaltonetworks.com/unit42/respond/managed-agentic-endpoint-security)
+
+[Strengthen Your Defenses](https://www.paloaltonetworks.com/unit42/strengthen-your-defenses)
+    *   [Attack Surface Assessment](https://www.paloaltonetworks.com/unit42/strengthen-your-defenses/attack-surface-assessment)
+    *   [Breach Readiness](https://www.paloaltonetworks.com/unit42/strengthen-your-defenses/breach-readiness-review)
+    *   [Cloud Security](https://www.paloaltonetworks.com/unit42/strengthen-your-defenses/cloud-security-assessment)
+    *   [Compromise Assessment](https://www.paloaltonetworks.com/unit42/strengthen-your-defenses/compromise-assessment)
+    *   [Ransomware Readiness](https://www.paloaltonetworks.com/unit42/strengthen-your-defenses/ransomware-readiness-assessment)
+    *   [Supply Chain](https://www.paloaltonetworks.com/unit42/strengthen-your-defenses/supply-chain-risk-assessment)
+    *   [Tabletop Exercises](https://www.paloaltonetworks.com/unit42/strengthen-your-defenses/tabletop-exercises)
+    *   [Unit 42 Retainer](https://www.paloaltonetworks.com/unit42/retainer)
+
+[Build Your Security Strategy](https://www.paloaltonetworks.com/unit42/build-your-security-strategy)
+    *   [Cyber Risk](https://www.paloaltonetworks.com/unit42/build-your-security-strategy/cyber-risk-assessment)
+    *   [IR Plan Development](https://www.paloaltonetworks.com/unit42/build-your-security-strategy/IR-plan-and-development-review)
+    *   [Security Program Design](https://www.paloaltonetworks.com/unit42/build-your-security-strategy/security-program-design)
+    *   [SOC Assessment](https://www.paloaltonetworks.com/unit42/build-your-security-strategy/soc-assessment)
+    *   [Virtual CISO](https://www.paloaltonetworks.com/unit42/build-your-security-strategy/virtual-ciso)
+    *   [Zero Trust](https://www.paloaltonetworks.com/unit42/build-your-security-strategy/zero-trust-advisory)
+
+Understand the Adversary
+
+    *   [Threat Intelligence](https://www.paloaltonetworks.com/unit42/threat-intelligence)
+    *   [Offensive Security](https://www.paloaltonetworks.com/unit42/strengthen-your-defenses/offensive-security-services)
+
+ Managed Firewalls 
+
+Managed Firewalls
+
+    *   [Managed Firewalls - AWS](https://www.paloaltonetworks.com/network-security/cloud-ngfw)
+    *   [Managed Firewalls - Azure](https://www.paloaltonetworks.com/network-security/cloud-ngfw-for-azure)
+
+ Customer Services 
+
+[Global Customer Services](https://www.paloaltonetworks.com/services)
+
+    *   [Education & Training](https://www.paloaltonetworks.com/services/education)
+    *   [Professional Services](https://www.paloaltonetworks.com/services/consulting)
+    *   [Success Tools](https://www.paloaltonetworks.com/services/customer-success-tools)
+    *   [Support Services](https://www.paloaltonetworks.com/services/solution-assurance)
+    *   [Customer Success](https://www.paloaltonetworks.com/services/customer-success)
+
+[Under Attack?](https://www.paloaltonetworks.com/unit42/contact-unit42)
+
+    *   [Services Overview](https://www.paloaltonetworks.com/cyberpedia/ai-agent-attack-surface#services-panel-0)
+    *   [Security Services](https://www.paloaltonetworks.com/cyberpedia/ai-agent-attack-surface#services-panel-1)
+    *   [Managed Firewalls](https://www.paloaltonetworks.com/cyberpedia/ai-agent-attack-surface#services-panel-2)
+    *   [Customer Services](https://www.paloaltonetworks.com/cyberpedia/ai-agent-attack-surface#services-panel-3)
+
+[Under Attack?](https://www.paloaltonetworks.com/unit42/contact-unit42)
+
+[![Image 39: Security Services logo](https://www.paloaltonetworks.com/etc/clientlibs/clean/imgs/unit-logo-dark.svg)](https://www.paloaltonetworks.com/unit42)
+
+Prepare for Emerging Risks
+
+    *   [AI Security](https://www.paloaltonetworks.com/unit42/strengthen-your-defenses/ai-security-assessment)
+    *   [Frontier AI](https://www.paloaltonetworks.com/unit42/prepare-for-emerging-risks/continuous-frontier-ai-defense)
+    *   [Respond to Cyber Attacks](https://www.paloaltonetworks.com/unit42/respond)
+    *   [Incident Response](https://www.paloaltonetworks.com/unit42/respond/incident-response)
+    *   [Digital Forensics](https://www.paloaltonetworks.com/unit42/respond/digital-forensics)
+    *   [Managed Detection & Response](https://www.paloaltonetworks.com/unit42/respond/managed-detection-response)
+    *   [Managed Threat Hunting](https://www.paloaltonetworks.com/cortex/managed-threat-hunting)
+    *   [Managed XSIAM](https://www.paloaltonetworks.com/cortex/managed-xsiam)
+    *   [Managed Agentic Endpoint Security](https://www.paloaltonetworks.com/unit42/respond/managed-agentic-endpoint-security)
+
+[Strengthen Your Defenses](https://www.paloaltonetworks.com/unit42/strengthen-your-defenses)
+    *   [Attack Surface Assessment](https://www.paloaltonetworks.com/unit42/strengthen-your-defenses/attack-surface-assessment)
+    *   [Breach Readiness](https://www.paloaltonetworks.com/unit42/strengthen-your-defenses/breach-readiness-review)
+    *   [Cloud Security](https://www.paloaltonetworks.com/unit42/strengthen-your-defenses/cloud-security-assessment)
+    *   [Compromise Assessment](https://www.paloaltonetworks.com/unit42/strengthen-your-defenses/compromise-assessment)
+    *   [Ransomware Readiness](https://www.paloaltonetworks.com/unit42/strengthen-your-defenses/ransomware-readiness-assessment)
+    *   [Supply Chain](https://www.paloaltonetworks.com/unit42/strengthen-your-defenses/supply-chain-risk-assessment)
+    *   [Tabletop Exercises](https://www.paloaltonetworks.com/unit42/strengthen-your-defenses/tabletop-exercises)
+    *   [Unit 42 Retainer](https://www.paloaltonetworks.com/unit42/retainer)
+
+[Build Your Security Strategy](https://www.paloaltonetworks.com/unit42/build-your-security-strategy)
+    *   [Cyber Risk](https://www.paloaltonetworks.com/unit42/build-your-security-strategy/cyber-risk-assessment)
+    *   [IR Plan Development](https://www.paloaltonetworks.com/unit42/build-your-security-strategy/IR-plan-and-development-review)
+    *   [Security Program Design](https://www.paloaltonetworks.com/unit42/build-your-security-strategy/security-program-design)
+    *   [SOC Assessment](https://www.paloaltonetworks.com/unit42/build-your-security-strategy/soc-assessment)
+    *   [Virtual CISO](https://www.paloaltonetworks.com/unit42/build-your-security-strategy/virtual-ciso)
+    *   [Zero Trust](https://www.paloaltonetworks.com/unit42/build-your-security-strategy/zero-trust-advisory)
+
+Understand the Adversary
+
+    *   [Threat Intelligence](https://www.paloaltonetworks.com/unit42/threat-intelligence)
+    *   [Offensive Security](https://www.paloaltonetworks.com/unit42/strengthen-your-defenses/offensive-security-services)
+
+Managed Firewalls
+
+    *   [Managed Firewalls - AWS](https://www.paloaltonetworks.com/network-security/cloud-ngfw)
+    *   [Managed Firewalls - Azure](https://www.paloaltonetworks.com/network-security/cloud-ngfw-for-azure)
+
+[Global Customer Services](https://www.paloaltonetworks.com/services)
+
+    *   [Education & Training](https://www.paloaltonetworks.com/services/education)
+    *   [Professional Services](https://www.paloaltonetworks.com/services/consulting)
+    *   [Success Tools](https://www.paloaltonetworks.com/services/customer-success-tools)
+    *   [Support Services](https://www.paloaltonetworks.com/services/solution-assurance)
+    *   [Customer Success](https://www.paloaltonetworks.com/services/customer-success)
+
+*   [Industries](https://www.paloaltonetworks.com/cyberpedia/ai-agent-attack-surface#) Industries  [![Image 40: Financial Services icon](https://www.paloaltonetworks.com/content/dam/pan/en_US/images/logos/nav/financial-icon-2.svg)Financial Services Secure with AI cybersecurity, fraud and ransomware prevention, compliance, and customer data protection](https://www.paloaltonetworks.com/industry/financial-services)[![Image 41: Manufacturing icon](https://www.paloaltonetworks.com/content/dam/pan/en_US/images/logos/nav/manufacturing-icon-2.svg)Manufacturing Secure with OT security, ransomware defense, industrial cybersecurity, supply chain resilience, and continuity](https://www.paloaltonetworks.com/industry/manufacturing)[![Image 42: Retail and Hospitality icon](https://www.paloaltonetworks.com/content/dam/pan/en_US/images/logos/nav/retail-icon-2.svg)Retail and Hospitality Secure with payment security, PCI compliance, ransomware and fraud prevention, and data protection](https://www.paloaltonetworks.com/industry/retail) [![Image 43: Healthcare and Life Sciences icon](https://www.paloaltonetworks.com/content/dam/pan/en_US/images/logos/nav/healthcare-icon-2.svg)Healthcare and Life Sciences Secure patient and clinical data, medical device security, ransomware defense, and HIPAA compliance](https://www.paloaltonetworks.com/industry/healthcare)[![Image 44: Public Sector icon](https://www.paloaltonetworks.com/content/dam/pan/en_US/images/logos/nav/public-sector-icon-2.svg)Public Sector Secure with Zero Trust, cyber defense, compliance, infrastructure protection, and citizen data security](https://www.paloaltonetworks.com/industry/public-sector)[![Image 45: Utilities icon](https://www.paloaltonetworks.com/content/dam/pan/en_US/images/logos/nav/utilities-icon-2.svg)Utilities Secure with power grid protection, OT network security, ransomware defense, and critical infrastructure security](https://www.paloaltonetworks.com/industry/electric-utilities) [![Image 46: Transportation icon](https://www.paloaltonetworks.com/content/dam/pan/en_US/images/logos/nav/transportation-icon-2.svg)Transportation Secure OT and connected infrastructure protection, ransomware defense, supply chain security, compliance](https://www.paloaltonetworks.com/industry/transportation-security)[![Image 47: Small and Medium Business icon](https://www.paloaltonetworks.com/content/dam/pan/en_US/images/logos/nav/smb-icon-2.svg)Small and Medium Business Secure against cyber threats using AI-powered endpoint, network, browser, cloud, and MDR](https://www.paloaltonetworks.com/industry/small-medium-business-portfolio)       
+*   [Partners](https://www.paloaltonetworks.com/cyberpedia/ai-agent-attack-surface#)
+
+ Partners  
+
+NextWave  
+
+    *   [Partner Program](https://www.paloaltonetworks.com/partners/nextwave-partner-portal-login)
+    *   [Become a Partner](https://paloaltonetworks.my.site.com/NextWavePartnerProgram/s/partnerregistration?type=becomepartner)
+    *   [Request Partner Portal Access](https://paloaltonetworks.my.site.com/NextWavePartnerProgram/s/partnerregistration?type=requestaccess)
+    *   [Partner Portal Login](https://www.paloaltonetworks.com/partners/nextwave-partner-portal)
+    *   [Find a Partner](https://paloaltonetworks.my.site.com/NextWavePartnerProgram/s/partnerlocator)
+
+Partner Ecosystem
+
+[Explore All Partners Find the right partner network tailored to your business needs, cloud environments, and security requirements](https://www.paloaltonetworks.com/partners)[Cloud Service Partners Bring cloud native security and compliance to the entire development lifecycle](https://www.paloaltonetworks.com/partners/nextwave-for-csp)[Frontier AI Alliance Outpace today’s cyberattacks through a global ecosystem of leaders orchestrating unified defenses](https://www.paloaltonetworks.com/frontier)[Global System Integrators Speed and secure digital transformation with the industry’s best technology, people and intelligence](https://www.paloaltonetworks.com/partners/nextwave-for-gsi)
+
+[Managed Security Service Providers Gain valuable resource oversight to help your businesses administer security strategies](https://www.paloaltonetworks.com/partners/managed-security-service-providers)[Resellers Deliver the most comprehensive cybersecurity portfolio while expanding opportunities and profitability](https://www.paloaltonetworks.com/partners/resellers)[Service Providers Protect mobile users, devices and applications with effective, flexible and easy to deploy cybersecurity](https://www.paloaltonetworks.com/partners/service-providers)[Technology Partners Advance security and transformation with innovative technology partner integrations](https://www.paloaltonetworks.com/partners/technology-partners)
+
+*   [Resources](https://www.paloaltonetworks.com/cyberpedia/ai-agent-attack-surface#)
+
+ Resources  
+
+![Image 48: Learn icon](https://www.paloaltonetworks.com/content/dam/pan/en_US/images/logos/nav/resource-library-icon.svg)Learn   
+    *   [Resource Library](https://www.paloaltonetworks.com/resources)
+    *   [Analyst Reports](https://www.paloaltonetworks.com/resources/research)
+    *   [Customer Stories](https://www.paloaltonetworks.com/customers)
+    *   [Blog](https://www.paloaltonetworks.com/blog/)
+    *   [Cyberpedia](https://www.paloaltonetworks.com/cyberpedia)
+    *   [Threat Vector Podcast](https://www.paloaltonetworks.com/podcasts/threat-vector)
+    *   [Unit 42 Threat Research](https://unit42.paloaltonetworks.com/)
+    *   [Knowledgebase](https://knowledgebase.paloaltonetworks.com/)
+    *   [Technical Documentation](https://docs.paloaltonetworks.com/)
+
+![Image 49: Engage icon](https://www.paloaltonetworks.com/content/dam/pan/en_US/images/logos/nav/engage-icon-2.svg)
+
+Engage
+
+    *   [Webinars](https://www.paloaltonetworks.com/resources/webinars)
+    *   [Demos](https://www.paloaltonetworks.com/demos)
+    *   [Test Drive](https://www.paloaltonetworks.com/resources/test-drives)
+    *   [On-Demand](https://www.paloaltonetworks.com/ondemand)
+
+![Image 50: Connect icon](https://www.paloaltonetworks.com/content/dam/pan/en_US/images/logos/nav/connect-icon-2.svg)
+
+Connect
+
+    *   [Executive Briefings](https://www.paloaltonetworks.com/about-us/executive-briefing-program)
+    *   [Events](https://events.paloaltonetworks.com/)
+    *   [Live Community](https://live.paloaltonetworks.com/)
+    *   [Contact Us](https://www.paloaltonetworks.com/company/contact-sales)
+
+![Image 51: Discover icon](https://www.paloaltonetworks.com/content/dam/pan/en_US/images/logos/nav/discover-icon-2.svg)
+
+Discover
+
+    *   [Why Palo Alto Networks?](https://www.paloaltonetworks.com/why-paloaltonetworks)
+    *   [Platform Approach](https://www.paloaltonetworks.com/why-paloaltonetworks/platformization)
+    *   [Awards & Recognition](https://www.paloaltonetworks.com/about-us/awards)
+    *   [Global Certifications](https://www.paloaltonetworks.com/legal-notices/trust-center/certifications)
+    *   [Cloud Locations](https://www.paloaltonetworks.com/products/regional-cloud-locations)
+    *   [Corporate Responsibility](https://www.paloaltonetworks.com/about-us/corporate-responsibility)
+    *   [Trust 360 Program](https://www.paloaltonetworks.com/resources/whitepapers/trust-360)
+
+![Image 52: Company icon](https://www.paloaltonetworks.com/etc/clientlibs/clean/imgs/logo-default-orange.svg)
+
+Company
+
+    *   [About Us](https://www.paloaltonetworks.com/about-us)
+    *   [Management Team](https://www.paloaltonetworks.com/about-us/management)
+    *   [Investor Relations](https://investors.paloaltonetworks.com/)
+    *   [Newsroom](https://www.paloaltonetworks.com/company/newsroom)
+    *   [Careers](https://jobs.paloaltonetworks.com/en)
+    *   [Culture & Benefits](https://jobs.paloaltonetworks.com/en/culture/)
+    *   [Ethics & Compliance](https://www.paloaltonetworks.com/company/ethics-and-compliance)
+    *   [Office Locations](https://www.paloaltonetworks.com/about-us/locations)
+
+*   [![Image 53: search magnifying glass](https://www.paloaltonetworks.com/etc/clientlibs/clean/imgs/search-black.svg)](https://www.paloaltonetworks.com/cyberpedia/ai-agent-attack-surface#)
+*   [us](https://www.paloaltonetworks.com/cyberpedia/ai-agent-attack-surface#)
+
+ Language  
+    *   [USA (ENGLISH)](https://www.paloaltonetworks.com/cyberpedia/ai-agent-attack-surface#)
+    *   [AUSTRALIA (ENGLISH)](https://www.paloaltonetworks.com.au/)
+    *   [BRAZIL (PORTUGUÉS)](https://www.paloaltonetworks.com.br/)
+    *   [CANADA (ENGLISH)](https://www.paloaltonetworks.ca/)
+    *   [CHINA (简体中文)](https://www.paloaltonetworks.cn/)
+    *   [FRANCE (FRANÇAIS)](https://www.paloaltonetworks.fr/)
+    *   [GERMANY (DEUTSCH)](https://www.paloaltonetworks.de/)
+    *   [INDIA (ENGLISH)](https://www.paloaltonetworks.in/)
+    *   [ITALY (ITALIANO)](https://www.paloaltonetworks.it/)
+    *   [JAPAN (日本語)](https://www.paloaltonetworks.jp/)
+    *   [KOREA (한국어)](https://www.paloaltonetworks.co.kr/)
+    *   [LATIN AMERICA (ESPAÑOL)](https://www.paloaltonetworks.lat/)
+    *   [MEXICO (ESPAÑOL)](https://www.paloaltonetworks.com.mx/)
+    *   [SINGAPORE (ENGLISH)](https://www.paloaltonetworks.sg/)
+    *   [SPAIN (ESPAÑOL)](https://www.paloaltonetworks.es/)
+    *   [TAIWAN (繁體中文)](https://www.paloaltonetworks.tw/)
+    *   [UK (ENGLISH)](https://www.paloaltonetworks.co.uk/)
+
+*   [Accounts & Support](https://www.paloaltonetworks.com/cyberpedia/ai-agent-attack-surface#)
+
+ Accounts & Support  
+    *   Accounts 
+    *   [Customer](https://www.paloaltonetworks.com/cyberpedia/ai-agent-attack-surface#)
+    *   [Partner](https://www.paloaltonetworks.com/cyberpedia/ai-agent-attack-surface#)
+    *   [Employee](https://www.paloaltonetworks.com/cyberpedia/ai-agent-attack-surface#)
+    *   [Login to Download](https://www.paloaltonetworks.com/login)
+    *   [Become a Member](https://www.paloaltonetworks.com/login?screenToRender=traditionalRegistration)
+
+    *   Support 
+    *   [Contact Us](https://www.paloaltonetworks.com/company/contact-sales)
+    *   [What's New](https://www.paloaltonetworks.com/resources)
+    *   [Get Support](https://support.paloaltonetworks.com/SupportAccount/MyAccount)
+
+[Under Attack?](https://www.paloaltonetworks.com/unit42/contact-unit42)
+
+*   [Demos and Trials](https://www.paloaltonetworks.com/get-started)
+
+Search
+
+ All 
+*   [Tech Docs](https://docs.paloaltonetworks.com/search)
+
+1.   [Cyberpedia](https://www.paloaltonetworks.com/cyberpedia)
+2.   [AI Security](https://www.paloaltonetworks.com/cyberpedia/ai-security)
+3.   [Agentic AI Security](https://www.paloaltonetworks.com/cyberpedia/what-is-agentic-ai-security)
+4.   [What Is the AI Agent Attack Surface?](https://www.paloaltonetworks.com/cyberpedia/ai-agent-attack-surface)
+
+Table of Contents
+
+*   [Agentic AI Security: What It Is and How to Do It](https://www.paloaltonetworks.com/cyberpedia/what-is-agentic-ai-security)
+    *   [The rise of agentic AI and its security implications](https://www.paloaltonetworks.com/cyberpedia/what-is-agentic-ai-security#the-rise-of-agentic-ai-and-its-security-implications)
+    *   [Why does agentic AI introduce new security challenges?](https://www.paloaltonetworks.com/cyberpedia/what-is-agentic-ai-security#why-does-agentic-ai-introduce-new-security-challenges)
+    *   [How does agentic AI security work?](https://www.paloaltonetworks.com/cyberpedia/what-is-agentic-ai-security#how-does-agentic-ai-security-work)
+    *   [What are the top agentic AI security threats?](https://www.paloaltonetworks.com/cyberpedia/what-is-agentic-ai-security#what-are-the-top-agentic-ai-security-threats)
+    *   [How to secure agentic AI systems](https://www.paloaltonetworks.com/cyberpedia/what-is-agentic-ai-security#how-to-secure-agentic-ai-systems)
+    *   [Agentic AI Security FAQs](https://www.paloaltonetworks.com/cyberpedia/what-is-agentic-ai-security#agentic-ai-security-faqs)
+
+*   [What Is Claude Code Security? Risks and Controls](https://www.paloaltonetworks.com/cyberpedia/what-is-claude-code-security)
+    *   [Why Claude Code Security Is Important](https://www.paloaltonetworks.com/cyberpedia/what-is-claude-code-security#why)
+    *   [Claude Code Security Risks](https://www.paloaltonetworks.com/cyberpedia/what-is-claude-code-security#claude)
+    *   [Real-World Examples of Claude Code Security Issues](https://www.paloaltonetworks.com/cyberpedia/what-is-claude-code-security#examples)
+    *   [How Claude Code Security Works](https://www.paloaltonetworks.com/cyberpedia/what-is-claude-code-security#works)
+    *   [Claude Code Hooks: A Control Point and a Risk](https://www.paloaltonetworks.com/cyberpedia/what-is-claude-code-security#hooks)
+    *   [Where Claude Code's Built-In Controls End](https://www.paloaltonetworks.com/cyberpedia/what-is-claude-code-security#where)
+    *   [Claude Code Security vs. Claude Security](https://www.paloaltonetworks.com/cyberpedia/what-is-claude-code-security#vs)
+    *   [Best Practices for Claude Code Security](https://www.paloaltonetworks.com/cyberpedia/what-is-claude-code-security#best)
+    *   [Securing Claude Code Across the Enterprise](https://www.paloaltonetworks.com/cyberpedia/what-is-claude-code-security#enterprise)
+    *   [Claude Code Security FAQs](https://www.paloaltonetworks.com/cyberpedia/what-is-claude-code-security#faqs)
+
+*    What Is the AI Agent Attack Surface? 
+    *   [Why Do AI Agents Expand the Attack Surface?](https://www.paloaltonetworks.com/cyberpedia/ai-agent-attack-surface#why)
+    *   [What Makes Up the AI Agent Attack Surface?](https://www.paloaltonetworks.com/cyberpedia/ai-agent-attack-surface#what)
+    *   [AI Agent Attack Surface vs. LLM Application Attack Surface](https://www.paloaltonetworks.com/cyberpedia/ai-agent-attack-surface#vs)
+    *   [Common Threats Across the AI Agent Attack Surface](https://www.paloaltonetworks.com/cyberpedia/ai-agent-attack-surface#common)
+    *   [How Can Organizations Reduce the AI Agent Attack Surface?](https://www.paloaltonetworks.com/cyberpedia/ai-agent-attack-surface#surface)
+    *   [Frequently Asked Questions](https://www.paloaltonetworks.com/cyberpedia/ai-agent-attack-surface#faqs)
+
+*   [Agentic AI Security Solutions: Top 7 Platforms Compared](https://www.paloaltonetworks.com/cyberpedia/agentic-ai-security-solutions)
+    *   [What Is Agentic AI Security and Why It Matters Now](https://www.paloaltonetworks.com/cyberpedia/agentic-ai-security-solutions#/content/pan/en_US/cyberpedia/what-is-agentic-ai-security)
+    *   [How Agentic AI Security Is Evolving in 2026](https://www.paloaltonetworks.com/cyberpedia/agentic-ai-security-solutions#h4)
+    *   [Top 7 Agentic AI Security Solutions for 2026](https://www.paloaltonetworks.com/cyberpedia/agentic-ai-security-solutions#solutions)
+    *   [Evaluating Agentic AI Security Companies: Key Criteria](https://www.paloaltonetworks.com/cyberpedia/agentic-ai-security-solutions#evaluation)
+    *   [Best Agentic AI Security Solutions and Tools FAQs](https://www.paloaltonetworks.com/cyberpedia/agentic-ai-security-solutions#faqs)
+
+*   [A Complete Guide to Agentic AI Governance](https://www.paloaltonetworks.com/cyberpedia/what-is-agentic-ai-governance)
+    *   [Why is agentic AI governance so important today?](https://www.paloaltonetworks.com/cyberpedia/what-is-agentic-ai-governance#cyberpedia-van-dalen-anchor)
+    *   [What are the main risks of AI agents?](https://www.paloaltonetworks.com/cyberpedia/what-is-agentic-ai-governance#https://www.paloaltonetworks.com/cyberpedia/what-is-ai-bias)
+    *   [Who is responsible when AI agents act autonomously?](https://www.paloaltonetworks.com/cyberpedia/what-is-agentic-ai-governance#h5)
+    *   [How to implement agentic AI governance](https://www.paloaltonetworks.com/cyberpedia/what-is-agentic-ai-governance#cyberpedia-further-reading)
+    *   [Where governance applies in the AI agent lifecycle](https://www.paloaltonetworks.com/cyberpedia/what-is-agentic-ai-governance#h5)
+    *   [How standards and regulations influence agentic AI governance](https://www.paloaltonetworks.com/cyberpedia/what-is-agentic-ai-governance#cyberpedia-arrow-list)
+
+*   [What Is Shadow AI? How It Happens and What to Do About It](https://www.paloaltonetworks.com/cyberpedia/what-is-shadow-ai)
+    *   [What is the difference between shadow IT and shadow AI?](https://www.paloaltonetworks.com/cyberpedia/what-is-shadow-ai#what-is-the-difference-between-shadow-it-and-shadow-ai)
+    *   [How does shadow AI happen?](https://www.paloaltonetworks.com/cyberpedia/what-is-shadow-ai#how-does-shadow-ai-happen)
+    *   [What are some examples of shadow AI?](https://www.paloaltonetworks.com/cyberpedia/what-is-shadow-ai#what-are-some-examples-of-shadow-ai)
+    *   [What are the primary risks of shadow AI?](https://www.paloaltonetworks.com/cyberpedia/what-is-shadow-ai#what-are-the-primary-risks-of-shadow-ai)
+    *   [How to determine how and when employees are allowed to use GenAI apps](https://www.paloaltonetworks.com/cyberpedia/what-is-shadow-ai#how-to-determine-how-and-when)
+    *   [How to protect against shadow AI in 5 steps](https://www.paloaltonetworks.com/cyberpedia/what-is-shadow-ai#how-to-protect-against-shadow-ai-in-5-steps)
+    *   [Top 5 myths and misconceptions about shadow AI](https://www.paloaltonetworks.com/cyberpedia/what-is-shadow-ai#top-5-myths-and-misconceptions-about-shadow-ai)
+    *   [Shadow AI FAQs](https://www.paloaltonetworks.com/cyberpedia/what-is-shadow-ai#shadow-ai-faqs)
+
+# What Is the AI Agent Attack Surface?
+
+4 min. read
+
+[Explore PRISMA AIRS](https://www.paloaltonetworks.com/content/pan/en_US/prisma/prisma-ai-runtime-security)[Get a Demo](https://www.paloaltonetworks.com/ai-security/ai-gateway#demo)
+
+Table of Contents
+
+*       *   [Why Do AI Agents Expand the Attack Surface?](https://www.paloaltonetworks.com/cyberpedia/ai-agent-attack-surface#why)
+    *   [What Makes Up the AI Agent Attack Surface?](https://www.paloaltonetworks.com/cyberpedia/ai-agent-attack-surface#what)
+    *   [AI Agent Attack Surface vs. LLM Application Attack Surface](https://www.paloaltonetworks.com/cyberpedia/ai-agent-attack-surface#vs)
+    *   [Common Threats Across the AI Agent Attack Surface](https://www.paloaltonetworks.com/cyberpedia/ai-agent-attack-surface#common)
+    *   [How Can Organizations Reduce the AI Agent Attack Surface?](https://www.paloaltonetworks.com/cyberpedia/ai-agent-attack-surface#surface)
+    *   [Frequently Asked Questions](https://www.paloaltonetworks.com/cyberpedia/ai-agent-attack-surface#faqs)
+
+1. Why Do AI Agents Expand the Attack Surface?
+
+*    
+    *   [Why Do AI Agents Expand the Attack Surface?](https://www.paloaltonetworks.com/cyberpedia/ai-agent-attack-surface#why)
+    *   [What Makes Up the AI Agent Attack Surface?](https://www.paloaltonetworks.com/cyberpedia/ai-agent-attack-surface#what)
+    *   [AI Agent Attack Surface vs. LLM Application Attack Surface](https://www.paloaltonetworks.com/cyberpedia/ai-agent-attack-surface#vs)
+    *   [Common Threats Across the AI Agent Attack Surface](https://www.paloaltonetworks.com/cyberpedia/ai-agent-attack-surface#common)
+    *   [How Can Organizations Reduce the AI Agent Attack Surface?](https://www.paloaltonetworks.com/cyberpedia/ai-agent-attack-surface#surface)
+    *   [Frequently Asked Questions](https://www.paloaltonetworks.com/cyberpedia/ai-agent-attack-surface#faqs)
+
+The AI agent attack surface is the collection of systems, identities, tools, data sources, memory stores and communication paths that could be exposed or misused when an AI agent performs tasks. It extends beyond the model's prompts and responses to include every resource the agent can access and every action it is authorized to take.
+
+AI agents can plan multistep workflows, retrieve information, call APIs, use software tools and act on behalf of users or applications. These capabilities make agents useful, but they also create additional security considerations. A manipulated response in a conversational AI application may produce incorrect information. In an agentic system, a manipulated instruction could also cause the agent to access data, change a record or invoke another system, depending on its permissions and safeguards.
+
+The size of an agent's attack surface depends on its design. An agent with limited data access, narrowly scoped permissions and human approval requirements has a smaller operational footprint than an autonomous agent connected to numerous enterprise systems.
+
+Key Points
+
+*   **Expanded reach**: An AI agent's attack surface includes the model as well as its tools, identities, data sources, memory and connected systems. 
+*   **Action creates consequence**: Because agents can take actions, a model error or manipulated instruction can affect applications and data outside the AI system. 
+*   **Access determines exposure**: The number of tools an agent can use and the permissions assigned to it directly influence potential impact. 
+*   **State introduces persistence**: Stored context and memory can preserve inaccurate or malicious information across steps or sessions. 
+*   **Controls must follow execution**: Effective security requires visibility and policy enforcement across the agent's complete workflow, not only its initial prompt and final response. 
+
+[](https://www.paloaltonetworks.com/cyberpedia/ai-agent-attack-surface#)
+
+## Why Do AI Agents Expand the Attack Surface?
+
+Traditional generative AI applications often focus on receiving input and producing content. Some also use retrieval systems, conversation history, APIs or other application components. AI agents generally extend this model by selecting actions and interacting with external resources to accomplish a goal.
+
+For example, an agent might read an email, retrieve a customer record, update a ticket and notify another system. Each connection adds a potential point of exposure. The agent's effective security boundary therefore includes the model and orchestration layer, the systems it can reach and the permissions used throughout the workflow.
+
+An agent does not inherently create the same level of risk in every deployment. Exposure increases when agents have broad permissions, access untrusted content, retain persistent state, connect to numerous tools or operate without appropriate approval and monitoring controls.
+
+[](https://www.paloaltonetworks.com/cyberpedia/ai-agent-attack-surface#)
+
+Related Content
+
+[What Is Agentic AI Security? Learn how to secure autonomous AI systems.](https://www.paloaltonetworks.com/cyberpedia/what-is-agentic-ai-security)
+
+[What Is AI Prompt Security? Understand and reduce prompt-based attacks.](https://www.paloaltonetworks.com/cyberpedia/what-is-ai-prompt-security)
+
+[Don't Let MCP Become an Attack Vector MCP is the default way AI agents connect to external data sources. See how you can secure it](https://www.paloaltonetworks.com/blog/ai-security/dont-let-mcp-become-an-attack-vector/)
+
+[Explore Agent Security Discover, assess and protect enterprise AI agents.](https://www.paloaltonetworks.com/ai-security/agent-security)
+
+## What Makes Up the AI Agent Attack Surface?
+
+### Instructions, reasoning and planning
+
+Agents interpret goals and determine the steps required to complete them. Attackers may attempt to manipulate this process through direct prompt injection, indirect prompt injection or malicious content retrieved from external sources.
+
+If the agent cannot reliably distinguish trusted instructions from untrusted data, it may incorporate an attacker's directions into its plan. The consequences depend on what the agent is permitted to do.
+
+### Tools and external systems
+
+Agents may connect to APIs, databases, SaaS applications, browsers, code execution environments and file systems. Every tool expands the set of resources the agent can reach.
+
+Tool-related exposure can result from insecure integrations, excessive functionality, inadequate input validation or missing authorization checks. Security controls should validate both whether an agent is allowed to use a tool and whether a particular action is appropriate within the current task.
+
+### Model Context Protocol connections
+
+The [Model Context Protocol](https://www.paloaltonetworks.com/cyberpedia/mcp-enterprise-adoption-challenges) provides a standardized way for AI applications to connect with tools and data sources. MCP can simplify interoperability, but an insecure or ungoverned implementation can introduce risks such as unauthorized tool access, malicious servers, excessive permissions and token misuse.
+
+MCP supports authorization capabilities for HTTP-based transports, but authorization is optional and does not replace enterprise access governance, tool-level policy or monitoring. Organizations should evaluate each MCP client, server and connected resource as part of the agent's overall trust boundary.
+
+### Identity and credentials
+
+Agents require identities and credentials to access protected resources. Risk increases when an agent uses shared credentials, inherits a user's full access or relies on a broadly privileged service account.
+
+A dedicated agent identity makes it easier to apply least privilege, attribute actions and revoke access without affecting other users or services. Permissions should be limited by task, resource and duration whenever possible.
+
+### Data and context sources
+
+Agents may process content from email, documents, websites, databases, collaboration platforms and retrieval systems. Some of this information may be untrusted, inaccurate or intentionally manipulated.
+
+External content can become an indirect instruction channel when an agent treats data as commands. Sensitive information may also be exposed if the agent retrieves more context than a task requires or sends protected data to an unauthorized destination.
+
+### Memory and stored state
+
+Some agentic systems maintain short-term state during a workflow or long-term memory across sessions. Stored state helps an agent preserve context, but it can also retain sensitive, inaccurate or malicious information.
+
+Memory poisoning occurs when an attacker causes manipulated information or instructions to be stored and reused. Memory systems therefore require access controls, data validation, retention rules and mechanisms for reviewing or removing unsafe content.
+
+### Inter-agent communication
+
+In multi-agent systems, an orchestrator may assign work to specialized agents and combine their results. Messages passed between agents can create implicit trust relationships.
+
+If one agent is compromised or produces manipulated output, other agents may act on that information. Systems should authenticate agent identities, validate delegated tasks and limit the data and permissions available to each participant.
+
+### Orchestration and runtime infrastructure
+
+The orchestration layer coordinates model calls, tool selection, memory, policies and workflow execution. A weakness in this layer can affect multiple components at once.
+
+Runtime infrastructure should enforce policy at the point of action, record decisions and support intervention when an agent attempts an unexpected or high-impact operation.
+
+[](https://www.paloaltonetworks.com/cyberpedia/ai-agent-attack-surface#)
+
+## AI Agent Attack Surface vs. LLM Application Attack Surface
+
+Both LLM applications and AI agents can face risks involving models, prompts, training data, retrieval sources and application infrastructure. The principal difference is that agents can independently select and execute actions within a defined level of autonomy.
+
+| Area | LLM application | AI agent |
+| --- | --- | --- |
+| Primary function | Generates or transforms content | Pursues goals through multistep actions |
+| External access | May use retrieval, APIs or application services | Commonly selects and invokes multiple tools |
+| Identity | Often acts within an application session | May require its own identity or delegated credentials |
+| State | May retain history or application-managed context | May use working state and persistent memory to guide actions |
+| Operational impact | Often limited to content or application output | May modify data, trigger workflows or operate connected systems |
+| Communication | Usually interacts with users or application components | May coordinate with other agents and orchestrators |
+
+The distinction is not absolute. An LLM application can have extensive integrations, while an agent can be narrowly constrained. Security teams should evaluate actual capabilities and access rather than relying only on the system's label.
+
+[](https://www.paloaltonetworks.com/cyberpedia/ai-agent-attack-surface#)
+
+## Common Threats Across the AI Agent Attack Surface
+
+The attack surface describes where exposure exists. Threats describe how an attacker may attempt to exploit that exposure.
+
+| Threat | Targeted area | Potential result | Example control |
+| --- | --- | --- | --- |
+| Direct prompt injection | Instructions and planning | The agent follows a malicious user instruction | Instruction hierarchy, input inspection and action controls |
+| Indirect prompt injection | Retrieved data and tool output | Untrusted content influences the agent's behavior | Content isolation, data labeling and runtime detection |
+| Tool misuse | Tools and APIs | The agent performs an unauthorized or unsafe operation | Tool allowlists, parameter validation and scoped permissions |
+| Credential compromise | Identity and access | An attacker uses the agent's access to reach protected resources | Dedicated identities, short-lived credentials and least privilege |
+| Memory poisoning | Stored state | Malicious context influences later tasks | Memory validation, access controls and retention policies |
+| Agent impersonation | Inter-agent communication | A malicious actor submits instructions as a trusted agent | Mutual authentication and message integrity controls |
+| Excessive agency | Orchestration and approvals | The agent completes a high-impact action without sufficient review | Risk-based approvals, transaction limits and human oversight |
+| Data leakage | Context, memory or outputs | Sensitive information reaches an unauthorized user or system | Data classification, DLP and destination controls |
+
+[](https://www.paloaltonetworks.com/cyberpedia/ai-agent-attack-surface#)
+
+## How Can Organizations Reduce the AI Agent Attack Surface?
+
+### Discover AI agents and their connections
+
+Maintain an inventory of sanctioned and unsanctioned agents, including their owners, models, tools, MCP servers, data sources and deployment environments. Discovery is necessary before access and security policies can be applied consistently.
+
+### Give each agent a dedicated identity
+
+Use a distinct, attributable identity for each agent instead of shared accounts or unrestricted user credentials. Apply least-privilege access based on the agent's intended tasks.
+
+### Limit tools and permissions
+
+Allow agents to access only the tools, functions and data required for an approved workflow. Separate read and write privileges, use short-lived credentials and require additional authorization for sensitive operations.
+
+### Treat retrieved content as untrusted
+
+Separate system instructions from external data and inspect content received through documents, websites, email, retrieval systems and tool responses. Prevent untrusted content from silently changing the agent's goals or permissions.
+
+### Require approval for high-impact actions
+
+Use human or policy-based approval before actions such as deleting data, changing access, executing code, transferring funds or communicating externally. Approval requirements should reflect the reversibility and potential impact of the action.
+
+### Test the complete agent workflow
+
+[AI red teaming](https://www.paloaltonetworks.com/cyberpedia/what-is-ai-red-teaming) should evaluate the model, prompts, memory, retrieval sources, tools, identities, orchestration and agent-to-agent communication. Testing only the model can miss vulnerabilities introduced by the surrounding system.
+
+### Monitor agent activity at runtime
+
+Record prompts, tool calls, memory access, identity use, policy decisions and agent-to-agent messages with appropriate privacy protections. Monitoring should make it possible to reconstruct why an action occurred and which resources were affected.
+
+### Govern MCP and other integrations
+
+Inventory MCP servers and other tool connections, authenticate access where applicable and validate the permissions granted to every integration. Block or isolate unapproved servers and review changes to their tools and capabilities.
+
+## How Are AI Agents Used in Cyberattacks?
+
+The use of AI agents by attackers is related to, but distinct from, attacks against enterprise AI agents. Threat actors can use agents to automate activities such as reconnaissance, vulnerability research, target prioritization and elements of exploitation.
+
+[Unit 42 research into an autonomous AI-driven campaign](https://unit42.paloaltonetworks.com/autonomous-ai-cyber-attack-campaign/) documented a threat actor using an agentic system to scan for vulnerabilities, prioritize targets and adjust its activity when initial attempts failed. This illustrates how autonomy can increase the speed and scale of established attack techniques.
+
+In separate controlled research, Unit 42 developed an autonomous, offensive multi-agent system to evaluate whether current models could coordinate stages of a cloud attack. Because this was a research demonstration rather than an observed customer incident, its findings should be understood as evidence of potential capability, not evidence that every attack is already autonomous.
+
+These examples reinforce the need to protect both sides of the equation: organizations must secure their own agentic systems while preparing for threat actors to use automation against traditional infrastructure.
+
+[](https://www.paloaltonetworks.com/cyberpedia/ai-agent-attack-surface#)
+
+## Frequently Asked Questions
+
+### What is the biggest security risk associated with AI agents?
+
+There is no single risk that applies equally to every agent. Risk is generally highest when an agent can process untrusted content, use powerful tools and act with broad permissions without effective monitoring or approval controls.
+
+### Does every AI agent create a large attack surface?
+
+No. The attack surface depends on the agent's connections, permissions, autonomy, stored state and deployment environment. A narrowly scoped agent with limited tools and strong controls may have substantially less exposure than an agent with broad enterprise access.
+
+### How does prompt injection affect AI agents?
+
+Prompt injection attempts to manipulate an agent's instructions or decision-making. Indirect prompt injection is especially relevant when an agent retrieves content from external sources and may interpret malicious data as an instruction.
+
+### Why do AI agents need separate identities?
+
+Separate identities support least privilege, accountability and access revocation. They also help security teams distinguish an agent's activity from actions performed by a user or another application.
+
+### Is MCP inherently insecure?
+
+No. MCP is a protocol for connecting AI applications with tools and data. Security depends on how clients, servers, authorization and downstream resources are implemented and governed. Unmanaged or overly privileged MCP connections can increase risk.
+
+Related Content
+
+[What Is Agentic AI Security? Learn how to secure autonomous AI systems.](https://www.paloaltonetworks.com/cyberpedia/what-is-agentic-ai-security)
+
+[What Is AI Prompt Security? Understand and reduce prompt-based attacks.](https://www.paloaltonetworks.com/cyberpedia/what-is-ai-prompt-security)
+
+[Don't Let MCP Become an Attack Vector MCP is the default way AI agents connect to external data sources. See how you can secure it](https://www.paloaltonetworks.com/blog/ai-security/dont-let-mcp-become-an-attack-vector/)
+
+[Explore Agent Security Discover, assess and protect enterprise AI agents.](https://www.paloaltonetworks.com/ai-security/agent-security)
+
+[![Image 54: Share page on facebook](https://www.paloaltonetworks.com/etc/clientlibs/clean/imgs/resources/facebook-circular-icon.svg)](https://www.facebook.com/share.php?u=https://www.paloaltonetworks.com/cyberpedia/ai-agent-attack-surface)[![Image 55: Share page on linkedin](https://www.paloaltonetworks.com/etc/clientlibs/clean/imgs/resources/linkedin-circular-icon.svg)](https://www.linkedin.com/sharing/share-offsite/?url=https://www.paloaltonetworks.com/cyberpedia/ai-agent-attack-surface&amp;title=What%20Is%20the%20AI%20Agent%20Attack%20Surface%3F)[![Image 56: Share page by an email](https://www.paloaltonetworks.com/etc/clientlibs/clean/imgs/resources/email-circular-icon.svg)](mailto:?subject=What%20Is%20the%20AI%20Agent%20Attack%20Surface%3F&body=Learn%20how%20AI%20agents%20expand%20the%20attack%20surface%20through%20tools%2C%20identities%2C%20memory%2C%20data%20access%20and%20autonomous%20actions%E2%80%94and%20how%20to%20reduce%20the%20risk.%20at%20https%3A//www.paloaltonetworks.com/cyberpedia/ai-agent-attack-surface)
+
+Back to Top
+
+[Previous](https://www.paloaltonetworks.com/cyberpedia/what-is-claude-code-security)What Is Claude Code Security? Risks and Controls
+
+[Next](https://www.paloaltonetworks.com/cyberpedia/agentic-ai-security-solutions)Agentic AI Security Solutions: Top 7 Platforms Compared
+
+[](https://www.paloaltonetworks.com/cyberpedia/ai-agent-attack-surface)
+
+Get the latest news, invites to events, and threat alerts
+
+Enter your business email now to subscribe! 
+
+Sign up 
+
+By submitting this form, I understand my personal data will be processed in accordance with [Palo Alto Networks Privacy Statement](https://www.paloaltonetworks.com/legal-notices/privacy) and [Terms of Use.](https://www.paloaltonetworks.com/legal-notices/terms-of-use)
+
+Sign up 
+
+Products and Services
+
+*   [AI-Powered Network Security Platform](https://www.paloaltonetworks.com/network-security)
+*   [Secure AI by Design](https://www.paloaltonetworks.com/ai-security)
+*   [Overview](https://www.paloaltonetworks.com/ai-security)
+*   [Prisma AIRS](https://www.paloaltonetworks.com/ai-security/prisma-airs)
+*   [AI Access Security](https://www.paloaltonetworks.com/sase/ai-access-security)
+*   [Cloud Delivered Security Services](https://www.paloaltonetworks.com/network-security/security-subscriptions)
+*   [Overview](https://www.paloaltonetworks.com/network-security/security-subscriptions)
+*   [Advanced Threat Prevention](https://www.paloaltonetworks.com/network-security/advanced-threat-prevention)
+*   [Advanced URL Filtering](https://www.paloaltonetworks.com/network-security/advanced-url-filtering)
+*   [Advanced WildFire](https://www.paloaltonetworks.com/network-security/advanced-wildfire)
+*   [Advanced DNS Security](https://www.paloaltonetworks.com/network-security/advanced-dns-security)
+*   [Enterprise Data Loss Prevention](https://www.paloaltonetworks.com/sase/enterprise-data-loss-prevention)
+*   [Enterprise IoT Security](https://www.paloaltonetworks.com/network-security/enterprise-device-security)
+*   [Medical IoT Security](https://www.paloaltonetworks.com/network-security/medical-device-security)
+*   [Industrial OT Security](https://www.paloaltonetworks.com/network-security/ot-security-solution)
+*   [SaaS Security](https://www.paloaltonetworks.com/sase/saas-security)
+
+*   [Next-Generation Firewalls](https://www.paloaltonetworks.com/network-security/next-generation-firewall)
+*   [Overview](https://www.paloaltonetworks.com/network-security/next-generation-firewall)
+*   [Hardware Firewalls](https://www.paloaltonetworks.com/network-security/hardware-firewall-innovations)
+*   [Software Firewalls](https://www.paloaltonetworks.com/network-security/software-firewalls)
+*   [Strata Cloud Manager](https://www.paloaltonetworks.com/network-security/strata-cloud-manager)
+*   [SD-WAN for NGFW](https://www.paloaltonetworks.com/network-security/sd-wan-subscription)
+*   [PAN-OS](https://www.paloaltonetworks.com/network-security/pan-os)
+*   [Panorama](https://www.paloaltonetworks.com/network-security/panorama)
+*   [Secure Access Service Edge](https://www.paloaltonetworks.com/sase)
+*   [Overview](https://www.paloaltonetworks.com/sase)
+*   [Prisma SASE](https://www.paloaltonetworks.com/sase)
+*   [Application Acceleration](https://www.paloaltonetworks.com/sase/app-acceleration)
+*   [Autonomous Digital Experience Management](https://www.paloaltonetworks.com/sase/adem)
+*   [Enterprise DLP](https://www.paloaltonetworks.com/sase/enterprise-data-loss-prevention)
+*   [Prisma Access](https://www.paloaltonetworks.com/sase/access)
+*   [Prisma Browser](https://www.paloaltonetworks.com/sase/prisma-browser)
+*   [Prisma SD-WAN](https://www.paloaltonetworks.com/sase/sd-wan)
+*   [Remote Browser Isolation](https://www.paloaltonetworks.com/sase/remote-browser-isolation)
+*   [SaaS Security](https://www.paloaltonetworks.com/sase/saas-security)
+
+*   [AI-Driven Security Operations Platform](https://www.paloaltonetworks.com/cortex)
+*   [Overview](https://www.paloaltonetworks.com/cortex)
+*   [Cloud Security](https://www.paloaltonetworks.com/cortex/cloud)
+*   [Cortex Cloud](https://www.paloaltonetworks.com/cortex/cloud)
+*   [Application Security](https://www.paloaltonetworks.com/cortex/cloud/application-security)
+*   [Cloud Posture Security](https://www.paloaltonetworks.com/cortex/cloud/cloud-posture-security)
+*   [Cloud Runtime Security](https://www.paloaltonetworks.com/cortex/cloud/runtime-security)
+*   [Prisma Cloud](https://www.paloaltonetworks.com/prisma/cloud)
+*   [AI-Driven SOC](https://www.paloaltonetworks.com/cortex)
+*   [Overview](https://www.paloaltonetworks.com/cortex)
+*   [Cortex XSIAM](https://www.paloaltonetworks.com/cortex/cortex-xsiam)
+*   [Cortex XDR](https://www.paloaltonetworks.com/cortex/cortex-xdr)
+*   [Cortex XSOAR](https://www.paloaltonetworks.com/cortex/cortex-xsoar)
+*   [Cortex Xpanse](https://www.paloaltonetworks.com/cortex/cortex-xpanse)
+*   [Unit 42 Managed Detection & Response](https://www.paloaltonetworks.com/unit42/respond/managed-detection-response)
+*   [Managed XSIAM](https://www.paloaltonetworks.com/cortex/managed-xsiam)
+*    Observability 
+*   [Cortex XCOR](https://www.paloaltonetworks.com/cortex/xcor)
+
+*   [Next-Generation Identity Security](https://www.paloaltonetworks.com/idira)
+*   [Overview](https://www.paloaltonetworks.com/idira)
+*   [Privileged Access Management](https://www.paloaltonetworks.com/idira/human/privileged-access-management)
+*   [Identity and Access Management](https://www.paloaltonetworks.com/idira/human/identity-and-access-management)
+*   [Endpoint Privilege Manager](https://www.paloaltonetworks.com/idira/human/endpoint-privilege-manager)
+*   [Identity Governance](https://www.paloaltonetworks.com/idira/human/identity-governance)
+*   [Workforce Password Management](https://www.paloaltonetworks.com/idira/human/workforce-password-management)
+*   [Agentic Identities](https://www.paloaltonetworks.com/idira/agentic)
+*   [Secrets Management](https://www.paloaltonetworks.com/idira/machine/secrets-management)
+*   [Unified Secrets Governance](https://www.paloaltonetworks.com/idira/machine/unified-secrets-governance)
+*   [Application Credentials Delivery](https://www.paloaltonetworks.com/idira/machine/application-credentials-delivery)
+*   [Vendor Privileged Access](https://www.paloaltonetworks.com/idira/human/vendor-privileged-access)
+*   [Threat Intel and Incident Response Services](https://www.paloaltonetworks.com/unit42)
+*   [Overview](https://www.paloaltonetworks.com/unit42)
+*   [Prepare for Emerging Risks](https://www.paloaltonetworks.com/unit42/prepare-for-emerging-risks/continuous-frontier-ai-defense)
+*   [Strengthen Your Defenses](https://www.paloaltonetworks.com/unit42/strengthen-your-defenses)
+*   [Build Your Security Strategy](https://www.paloaltonetworks.com/unit42/build-your-security-strategy)
+*   [Understand the Adversary](https://www.paloaltonetworks.com/unit42/threat-intelligence)
+*   [Respond to a Cyber Attack](https://www.paloaltonetworks.com/unit42/respond)
+
+Company
+
+*   [About Us](https://www.paloaltonetworks.com/about-us)
+*   [Careers](https://jobs.paloaltonetworks.com/en/)
+*   [Contact Us](https://www.paloaltonetworks.com/company/contact-sales)
+*   [Corporate Responsibility](https://www.paloaltonetworks.com/about-us/corporate-responsibility)
+*   [Customers](https://www.paloaltonetworks.com/customers)
+*   [Investor Relations](https://investors.paloaltonetworks.com/)
+*   [Location](https://www.paloaltonetworks.com/about-us/locations)
+*   [Newsroom](https://www.paloaltonetworks.com/company/newsroom)
+
+Popular Links
+
+*   [Blog](https://www.paloaltonetworks.com/blog/)
+*   [Communities](https://www.paloaltonetworks.com/communities)
+*   [Content Library](https://www.paloaltonetworks.com/resources)
+*   [Cyberpedia](https://www.paloaltonetworks.com/cyberpedia)
+*   [Event Center](https://events.paloaltonetworks.com/)
+*   [Manage Email Preferences](https://start.paloaltonetworks.com/preference-center-subscribe.html)
+*   [Products A-Z](https://www.paloaltonetworks.com/products/products-a-z)
+*   [Product Certifications](https://www.paloaltonetworks.com/legal-notices/trust-center/certifications)
+*   [Report a Vulnerability](https://www.paloaltonetworks.com/security-disclosure)
+*   [Sitemap](https://www.paloaltonetworks.com/sitemap)
+*   [Tech Docs](https://docs.paloaltonetworks.com/)
+*   [Unit 42](https://unit42.paloaltonetworks.com/)
+*   [Do Not Sell or Share My Personal Information](https://panwedd.exterro.net/portal/dsar.htm?target=panwedd)
+
+![Image 57: Palo Alto Networks Logo](https://www.paloaltonetworks.com/etc/clientlibs/clean/imgs/pan-logo-dark.svg)
+
+*   [Privacy](https://www.paloaltonetworks.com/legal-notices/privacy)
+*   [Trust Center](https://www.paloaltonetworks.com/legal-notices/trust-center)
+*   [Terms of Use](https://www.paloaltonetworks.com/legal-notices/terms-of-use)
+*   [Documents](https://www.paloaltonetworks.com/legal)
+
+Copyright © 2026 Palo Alto Networks. All Rights Reserved
+
+*   [![Image 58: Youtube](https://www.paloaltonetworks.com/etc/clientlibs/clean/imgs/social/youtube-black.svg)](https://www.youtube.com/user/paloaltonetworks)
+*   [![Image 59: Podcast](https://www.paloaltonetworks.com/content/dam/pan/en_US/images/icons/podcast.svg)](https://www.paloaltonetworks.com/podcasts/threat-vector)
+*   [![Image 60: Facebook](https://www.paloaltonetworks.com/etc/clientlibs/clean/imgs/social/facebook-black.svg)](https://www.facebook.com/PaloAltoNetworks/)
+*   [![Image 61: LinkedIn](https://www.paloaltonetworks.com/etc/clientlibs/clean/imgs/social/linkedin-black.svg)](https://www.linkedin.com/company/palo-alto-networks)
+*   [![Image 62: Twitter](https://www.paloaltonetworks.com/etc/clientlibs/clean/imgs/social/twitter-x-black.svg)](https://twitter.com/PaloAltoNtwks)
+*   EN Select your language  
+
+This site uses cookies essential to its operation, for analytics, and for personalized content and ads. By continuing to browse this site, you acknowledge the use of cookies. [Privacy statement](https://www.paloaltonetworks.com/legal-notices/privacy)
+
+Manage My Cookie Settings
+
+![Image 63: Company Logo](https://cdn.cookielaw.org/logos/static/ot_company_logo.png)
+
+Your Opt Out Preference Signal is Honored
+
+## Privacy Preference Center
+
+When you visit any website, it may store or retrieve information on your browser, mostly in the form of cookies. This information might be about you, your preferences, or your device, and is mostly used to make the site work as you expect. The information does not usually identify you directly, but it can give you a more personalized web experience. Because we respect your right to privacy, you can choose not to allow some types of cookies. Click on the different category headings to learn more and change our default settings. Blocking some types of cookies may impact your experience of the site and the services we are able to offer.   
+[More information on cookie consent](https://www.paloaltonetworks.com/legal-notices/privacy)
+
+Allow All
+### Manage Your Consent Preferences
+
+#### Strictly Necessary Cookies
+
+Always Active
+
+These cookies are necessary for the website to function and cannot be switched off in our systems. They are usually only set in response to actions made by you which amount to a request for services, such as setting your privacy preferences, logging in or filling in forms. You can set your browser to block or alert you about these cookies, but some parts of the site will not then work. These cookies do not store any personally identifiable information.
+
+#### Performance Cookies
+
+- [x] Performance Cookies 
+
+These cookies allow us to count visits and traffic sources so we can measure and improve the performance of our site. They help us to know which pages are the most and least popular and see how visitors move around the site. All information these cookies collect is aggregated and therefore anonymous. If you do not allow these cookies we will not know when you have visited our site, and will not be able to monitor its performance.
+
+#### Functional Cookies
+
+- [x] Functional Cookies 
+
+These cookies enable the website to provide enhanced functionality and personalisation. They may be set by us or by third party providers whose services we have added to our pages. If you do not allow these cookies then some or all of these services may not function properly.
+
+#### Targeting Cookies
+
+- [x] Targeting Cookies 
+
+These cookies may be set through our site by our advertising partners. They may be used by those companies to build a profile of your interests and show you relevant adverts on other sites. They do not store directly personal information, but are based on uniquely identifying your browser and internet device. If you do not allow these cookies, you will experience less targeted advertising.
+
+### Cookie List
+
+Clear
+
+- [x] checkbox label label
+
+Apply Cancel
+
+Consent Leg.Interest
+
+- [x] checkbox label label
+
+- [x] checkbox label label
+
+- [x] checkbox label label
+
+Reject All Confirm My Choices
+
+[![Image 64: Powered by Onetrust](https://cdn.cookielaw.org/logos/static/powered_by_logo.svg)](https://www.onetrust.com/solutions/consent-and-preferences/)
+
+![Image 65](https://bat.bing.com/action/0?ti=211019041&tm=al001&Ver=2&mid=3c72f2df-db5e-4146-85bd-5fe6887af6a6&bo=1&sid=25a61f40e7bb11f1af21e570094e643e&vid=25a65e50e7bb11f18b0b4bccc21f91db&vids=1&msclkid=N&pi=918639831&lg=en-US&sw=1280&sh=1280&sc=24&tl=What%20Is%20the%20AI%20Agent%20Attack%20Surface%3F%20-%20Palo%20Alto%20Networks&kw=ai%20agent%20attack%20surface,%20agentic%20ai%20attack%20surface,%20ai%20agent%20security%20risks,%20ai%20agent%20threats,%20agent%20identity%20security,%20ai%20agent%20tool%20security&p=https%3A%2F%2Fwww.paloaltonetworks.com%2Fcyberpedia%2Fai-agent-attack-surface&r=&lt=1733&pt=1795492636669,,,,,1,1,1,1,1,,1,100,100,132,291,991,991,1731,1731,1733&pn=0,0&evt=pageLoad&sv=2&cdb=AQET&rn=847432)
+
+![Image 66](https://t.co/1/i/adsct?bci=4&dv=UTC%26en-US%2Cen%26Google%20Inc.%26Linux%20x86_64%26255%261280%261280%265%2624%261280%261280%260%26na%261&eci=3&event=%7B%7D&event_id=068ccc41-370b-4165-bf5c-556d0e33bd7d&integration=advertiser&p_id=Twitter&p_user_id=0&pl_id=b3dead0f-3e0e-4445-ac0e-aa6c08dbc6ce&tw_ch_fvl=Chromium%2F158.0.8127.36%2CNot.A%2FBrand%2F24.0.0.0%2CGoogle%20Chrome%2F158.0.8127.36&tw_document_href=https%3A%2F%2Fwww.paloaltonetworks.com%2Fcyberpedia%2Fai-agent-attack-surface&tw_engaged_ms=2&tw_iframe_status=0&tw_pid_src=1&tw_session_count=1&tw_session_id=1795492640362-343214221&tw_session_start=1&twpid=tw.1795492640362.80644174842847995&txn_id=nx71t&type=javascript&version=2.4.12)![Image 67](https://analytics.twitter.com/1/i/adsct?bci=4&dv=UTC%26en-US%2Cen%26Google%20Inc.%26Linux%20x86_64%26255%261280%261280%265%2624%261280%261280%260%26na%261&eci=3&event=%7B%7D&event_id=068ccc41-370b-4165-bf5c-556d0e33bd7d&integration=advertiser&p_id=Twitter&p_user_id=0&pl_id=b3dead0f-3e0e-4445-ac0e-aa6c08dbc6ce&tw_ch_fvl=Chromium%2F158.0.8127.36%2CNot.A%2FBrand%2F24.0.0.0%2CGoogle%20Chrome%2F158.0.8127.36&tw_document_href=https%3A%2F%2Fwww.paloaltonetworks.com%2Fcyberpedia%2Fai-agent-attack-surface&tw_engaged_ms=2&tw_iframe_status=0&tw_pid_src=1&tw_session_count=1&tw_session_id=1795492640362-343214221&tw_session_start=1&twpid=tw.1795492640362.80644174842847995&txn_id=nx71t&type=javascript&version=2.4.12)![Image 68](blob:https://www.paloaltonetworks.com/950a6990-5781-404b-a225-2b26422c1da4)![Image 69](https://www.googleadservices.com/pagead/conversion/741399969/?label=LUwuCPuV-t0CEKG7w-EC&guid=ON&script=0)![Image 70](https://www.googleadservices.com/pagead/conversion/836073641/?label=Lk0VCK6Ri_MBEKnx1Y4D&guid=ON&script=0)![Image 71](https://www.googleadservices.com/pagead/conversion/836073641/?label=ukAnCNOtrd0cEKnx1Y4D&guid=ON&script=0)![Image 72](https://verifi.podscribe.com/tag?action=view&user_id=5001cc37-3f20-4e8b-9b9d-fc0dc04967a4&advertiser=paloaltonetworks&referrer=_&session_referrer=_&session_landing_url=https%3A%2F%2Fwww.paloaltonetworks.com%2Fcyberpedia%2Fai-agent-attack-surface&device_id=pscrb_7b783cae-5c74-4958-b183-932ad2b36794&first_visited_at=1795492640375&stid=&ipv4=34.34.253.112&ipv6=&url=https%3A%2F%2Fwww.paloaltonetworks.com%2Fcyberpedia%2Fai-agent-attack-surface&event_url=https%3A%2F%2Fwww.paloaltonetworks.com%2Fcyberpedia%2Fai-agent-attack-surface&source=js-tag+v1.2.3&cachebust=1795492640857)

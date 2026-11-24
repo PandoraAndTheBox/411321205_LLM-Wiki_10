@@ -1,0 +1,1388 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Agent Security：從攻擊面到縱深防禦</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Noto+Serif+TC:wght@500;700;900&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --paper-bg: #f2f4f6;
+      --paper-card: rgba(255, 255, 255, 0.76);
+      --ink-primary: #27313a;
+      --ink-secondary: #495866;
+      --ink-muted: #768492;
+
+      --morandi-blue: #89a0b5;
+      --morandi-sage: #93ab9f;
+      --morandi-lavender: #a39eb5;
+
+      --gold: #b59457;
+      --gold-dark: #8a6c35;
+      --gold-hairline: rgba(181, 148, 87, 0.45);
+      --gold-soft: rgba(181, 148, 87, 0.11);
+
+      --font-serif: 'Noto Serif TC', 'Songti TC', 'PMingLiU', Georgia, serif;
+      --font-sans: 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', system-ui, sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      background-color: #e2e6ea;
+      color: var(--ink-primary);
+      font-family: var(--font-sans);
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .deck-wrapper {
+      position: relative;
+      width: min(96vw, calc(92vh * 16 / 9));
+      aspect-ratio: 16 / 9;
+      background: var(--paper-bg);
+      box-shadow:
+        0 24px 60px rgba(39, 49, 58, 0.12),
+        0 4px 16px rgba(39, 49, 58, 0.06);
+      border: 1px solid rgba(181, 148, 87, 0.35);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .paper-grain {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 2;
+      opacity: 0.34;
+      mix-blend-mode: multiply;
+    }
+
+    .progress-track {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 3px;
+      background: rgba(137, 160, 181, 0.18);
+      z-index: 20;
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 6.25%;
+      background: linear-gradient(90deg, var(--morandi-blue), var(--gold));
+      transition: width 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .slides-stage {
+      position: relative;
+      flex: 1;
+      width: 100%;
+      height: 100%;
+      z-index: 5;
+    }
+
+    .slide {
+      position: absolute;
+      inset: 0;
+      padding: 2.2% 3.6% 4.3%;
+      display: flex;
+      flex-direction: column;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(8px);
+      transition: opacity 0.4s ease, transform 0.4s ease, visibility 0.4s;
+      overflow: hidden;
+    }
+
+    .slide.active {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .wash {
+      position: absolute;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: -1;
+      filter: url(#wc-wash);
+    }
+
+    .wash-blue {
+      background: radial-gradient(circle at 40% 40%, rgba(137, 160, 181, 0.28), rgba(137, 160, 181, 0.04) 65%, transparent 76%);
+    }
+
+    .wash-sage {
+      background: radial-gradient(circle at 50% 50%, rgba(147, 171, 159, 0.26), rgba(147, 171, 159, 0.04) 65%, transparent 76%);
+    }
+
+    .wash-lavender {
+      background: radial-gradient(circle at 50% 50%, rgba(163, 158, 181, 0.25), rgba(163, 158, 181, 0.04) 65%, transparent 76%);
+    }
+
+    .slide-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--gold-hairline);
+      padding-bottom: 0.45rem;
+      margin-bottom: 0.75rem;
+      flex-shrink: 0;
+    }
+
+    .eyebrow {
+      font-size: clamp(0.68rem, 0.88vw, 0.82rem);
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      color: var(--gold-dark);
+      font-weight: 500;
+      margin-bottom: 0.12rem;
+    }
+
+    h1, h2, h3 {
+      font-family: var(--font-serif);
+      color: var(--ink-primary);
+      font-weight: 700;
+      line-height: 1.24;
+    }
+
+    h1 { font-size: clamp(1.85rem, 2.9vw, 2.65rem); }
+    h2 { font-size: clamp(1.24rem, 1.95vw, 1.72rem); }
+    h3 { font-size: clamp(0.96rem, 1.22vw, 1.14rem); }
+
+    p, li {
+      font-size: clamp(0.82rem, 1.05vw, 0.98rem);
+      line-height: 1.54;
+      color: var(--ink-secondary);
+    }
+
+    .gold-badge {
+      display: inline-block;
+      padding: 0.16rem 0.65rem;
+      border: 1px solid var(--gold-hairline);
+      background: var(--gold-soft);
+      color: var(--gold-dark);
+      font-size: clamp(0.66rem, 0.82vw, 0.78rem);
+      letter-spacing: 0.05em;
+      border-radius: 999px;
+      font-weight: 500;
+      white-space: nowrap;
+    }
+
+    .gold-num {
+      font-family: var(--font-serif);
+      color: var(--gold);
+      font-weight: 700;
+    }
+
+    .stat-big {
+      font-family: var(--font-serif);
+      font-size: clamp(1.35rem, 2.05vw, 1.9rem);
+      color: var(--gold);
+      font-weight: 900;
+      line-height: 1.05;
+    }
+
+    .wc-card {
+      position: relative;
+      background: var(--paper-card);
+      backdrop-filter: blur(4px);
+      border: 1px solid rgba(137, 160, 181, 0.28);
+      border-radius: 12px 16px 13px 14px;
+      padding: 0.82rem 1rem;
+      box-shadow: 0 5px 16px rgba(39, 49, 58, 0.035);
+    }
+
+    .wc-card.gold-accent {
+      border-color: var(--gold-hairline);
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.86), rgba(242, 244, 246, 0.72));
+    }
+
+    .wc-card.tint-blue {
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.82), rgba(137, 160, 181, 0.14));
+    }
+
+    .wc-card.tint-sage {
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.82), rgba(147, 171, 159, 0.15));
+    }
+
+    .wc-card.tint-lavender {
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.82), rgba(163, 158, 181, 0.15));
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.95rem;
+      flex: 1;
+      min-height: 0;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.9rem;
+      flex: 1;
+      min-height: 0;
+    }
+
+    .grid-2x2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      gap: 0.7rem;
+      flex: 1;
+    }
+
+    .stack {
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+      min-height: 0;
+    }
+
+    ul.clean {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.38rem;
+    }
+
+    ul.clean li {
+      position: relative;
+      padding-left: 0.95rem;
+    }
+
+    ul.clean li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.56em;
+      width: 4.5px;
+      height: 4.5px;
+      border-radius: 50%;
+      background: var(--gold);
+    }
+
+    table.wc-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: clamp(0.78rem, 0.96vw, 0.9rem);
+      background: rgba(255, 255, 255, 0.68);
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid rgba(137, 160, 181, 0.25);
+    }
+
+    table.wc-table th {
+      font-family: var(--font-serif);
+      text-align: left;
+      padding: 0.55rem 0.8rem;
+      background: rgba(137, 160, 181, 0.18);
+      color: var(--ink-primary);
+      border-bottom: 1px solid var(--gold-hairline);
+      font-weight: 700;
+    }
+
+    table.wc-table td {
+      padding: 0.52rem 0.8rem;
+      border-bottom: 1px solid rgba(137, 160, 181, 0.14);
+      color: var(--ink-secondary);
+      vertical-align: top;
+      line-height: 1.5;
+    }
+
+    table.wc-table tr:last-child td { border-bottom: none; }
+
+    .cover-box {
+      flex: 1;
+      display: grid;
+      grid-template-columns: 1.25fr 0.75fr;
+      gap: 1.5rem;
+      align-items: center;
+      padding: 1.6rem 2rem;
+      border: 1px solid var(--gold-hairline);
+      background: rgba(255, 255, 255, 0.46);
+      border-radius: 6px;
+    }
+
+    .cover-divider {
+      width: 78px;
+      height: 1px;
+      background: linear-gradient(90deg, var(--gold), transparent);
+      margin: 0.9rem 0;
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: 1rem;
+    }
+
+    .nav-bar {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 38px;
+      padding: 0 2.4%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(242, 244, 246, 0.88);
+      backdrop-filter: blur(6px);
+      border-top: 1px solid rgba(181, 148, 87, 0.25);
+      z-index: 20;
+    }
+
+    .nav-meta { font-size: 0.72rem; color: var(--ink-muted); letter-spacing: 0.04em; }
+    .nav-controls { display: flex; align-items: center; gap: 0.6rem; }
+
+    .nav-btn {
+      appearance: none;
+      background: rgba(255, 255, 255, 0.8);
+      border: 1px solid var(--gold-hairline);
+      color: var(--ink-primary);
+      font-family: var(--font-sans);
+      font-size: 0.72rem;
+      padding: 0.24rem 0.8rem;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .nav-btn:hover:not(:disabled) {
+      background: var(--gold-soft);
+      border-color: var(--gold);
+      color: var(--gold-dark);
+    }
+
+    .nav-btn:disabled { opacity: 0.35; cursor: not-allowed; }
+
+    .page-indicator {
+      font-family: var(--font-serif);
+      font-size: 0.8rem;
+      color: var(--ink-secondary);
+      min-width: 3.4rem;
+      text-align: center;
+    }
+
+    svg.diagram { width: 100%; height: 100%; display: block; }
+
+    code.mono {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.88em;
+      color: var(--gold-dark);
+      background: rgba(181, 148, 87, 0.08);
+      padding: 0.04rem 0.26rem;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+
+  <svg width="0" height="0" style="position:absolute">
+    <defs>
+      <filter id="wc-wash" x="-20%" y="-20%" width="140%" height="140%">
+        <feTurbulence type="fractalNoise" baseFrequency="0.015" numOctaves="3" result="noise" />
+        <feDisplacementMap in="SourceGraphic" in2="noise" scale="26" xChannelSelector="R" yChannelSelector="G" />
+      </filter>
+      <filter id="wc-stroke" x="-10%" y="-10%" width="120%" height="120%">
+        <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="2" result="noise" />
+        <feDisplacementMap in="SourceGraphic" in2="noise" scale="3" />
+      </filter>
+      <filter id="paper-texture">
+        <feTurbulence type="fractalNoise" baseFrequency="0.75" numOctaves="3" stitchTiles="stitch" />
+        <feColorMatrix type="saturate" values="0" />
+      </filter>
+    </defs>
+  </svg>
+
+  <div class="deck-wrapper">
+    <div class="progress-track">
+      <div class="progress-fill" id="progressFill"></div>
+    </div>
+
+    <svg class="paper-grain" width="100%" height="100%">
+      <rect width="100%" height="100%" filter="url(#paper-texture)" opacity="0.16" />
+    </svg>
+
+    <div class="slides-stage" id="slidesStage">
+
+      <!-- SLIDE 01: COVER -->
+      <section class="slide active" data-title="01 · 封面">
+        <div class="wash wash-blue" style="width:420px;height:420px;top:-110px;left:-90px;"></div>
+        <div class="wash wash-sage" style="width:360px;height:360px;bottom:-110px;right:-70px;"></div>
+        <div class="wash wash-lavender" style="width:240px;height:240px;top:22%;right:20%;"></div>
+
+        <div class="cover-box">
+          <div>
+            <span class="gold-badge">AI AGENT SECURITY · 讀書會綜覽簡報</span>
+            <div style="height:0.85rem;"></div>
+            <h1>AI Agent Security：<br/>從攻擊面到縱深防禦</h1>
+            <div class="cover-divider"></div>
+            <p style="font-size:clamp(0.8rem,1.05vw,0.96rem);max-width:540px;">
+              當 AI 從「生成文字」跨越到「多步驟自主行動、工具串接與跨會話持久性記憶」，單次對話誤差會演變為修改資料與系統越權的真實風險。本簡報整合五篇核心文獻，以完整脈絡拆解攻擊面、三大威脅與確定性應用層防禦。
+            </p>
+            <div class="pill-row">
+              <span class="gold-badge">OWASP LLM01:2025</span>
+              <span class="gold-badge">TopAIThreats PAT-AGT-006</span>
+              <span class="gold-badge">Mem0 Memory Security</span>
+              <span class="gold-badge">Microsoft Defense in Depth</span>
+              <span class="gold-badge">Palo Alto Attack Surface</span>
+            </div>
+          </div>
+
+          <div class="wc-card" style="height:100%;display:flex;align-items:center;justify-content:center;padding:0.6rem;">
+            <svg class="diagram" viewBox="0 0 320 340">
+              <g font-family="Noto Sans TC, sans-serif" text-anchor="middle">
+                <rect x="24" y="18" width="272" height="72" rx="14" fill="rgba(163,158,181,0.18)" stroke="#a39eb5" stroke-width="1.1" filter="url(#wc-stroke)" />
+                <text x="160" y="45" font-family="Noto Serif TC, serif" font-size="14" font-weight="700" fill="#27313a">01. 攻擊面擴張</text>
+                <text x="160" y="68" font-size="11" fill="#495866">自主規劃 × 工具 / MCP × 持久記憶</text>
+
+                <line x1="160" y1="90" x2="160" y2="124" stroke="#b59457" stroke-width="1.4" />
+                <polygon points="155,120 165,120 160,128" fill="#b59457" />
+
+                <rect x="24" y="130" width="272" height="76" rx="14" fill="rgba(137,160,181,0.20)" stroke="#89a0b5" stroke-width="1.1" filter="url(#wc-stroke)" />
+                <text x="160" y="157" font-family="Noto Serif TC, serif" font-size="14" font-weight="700" fill="#27313a">02. 三大威脅向量</text>
+                <text x="160" y="178" font-size="10.5" fill="#495866">Prompt Injection · Memory Poisoning</text>
+                <text x="160" y="194" font-size="10.5" fill="#495866">Tool Misuse &amp; Privilege Escalation</text>
+
+                <line x1="160" y1="206" x2="160" y2="240" stroke="#b59457" stroke-width="1.4" />
+                <polygon points="155,236 165,236 160,244" fill="#b59457" />
+
+                <rect x="24" y="246" width="272" height="76" rx="14" fill="rgba(181,148,87,0.12)" stroke="#b59457" stroke-width="1.5" filter="url(#wc-stroke)" />
+                <text x="160" y="273" font-family="Noto Serif TC, serif" font-size="14" font-weight="700" fill="#27313a">03. 縱深防禦核心</text>
+                <text x="160" y="294" font-size="10.5" fill="#495866">確定性 Application Layer</text>
+                <text x="160" y="310" font-size="10.5" fill="#8a6c35" font-weight="600">最小權限 · 獨立身分 · HITL · 記憶衛生</text>
+              </g>
+            </svg>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 02: OVERVIEW MINDMAP -->
+      <section class="slide" data-title="02 · 簡報全景心智圖">
+        <div class="wash wash-lavender" style="width:360px;height:360px;top:-80px;right:-60px;"></div>
+        <div class="wash wash-sage" style="width:320px;height:320px;bottom:-80px;left:-60px;"></div>
+        <div class="slide-header">
+          <div>
+            <div class="eyebrow">PRESENTATION OVERVIEW · 知識地圖</div>
+            <h2>簡報全景心智圖：從風險轉變到縱深防禦</h2>
+          </div>
+          <span class="gold-badge">17 頁完整脈絡導覽</span>
+        </div>
+
+        <div class="wc-card" style="flex:1;padding:0.4rem;display:flex;align-items:center;justify-content:center;">
+          <svg class="diagram" viewBox="0 0 960 400">
+            <circle cx="480" cy="200" r="68" fill="rgba(181,148,87,0.14)" filter="url(#wc-wash)" />
+            <circle cx="195" cy="95" r="70" fill="rgba(137,160,181,0.18)" filter="url(#wc-wash)" />
+            <circle cx="765" cy="95" r="70" fill="rgba(163,158,181,0.18)" filter="url(#wc-wash)" />
+            <circle cx="195" cy="305" r="70" fill="rgba(147,171,159,0.20)" filter="url(#wc-wash)" />
+            <circle cx="765" cy="305" r="70" fill="rgba(137,160,181,0.18)" filter="url(#wc-wash)" />
+
+            <g stroke="#b59457" stroke-width="1.3" fill="none" opacity="0.75">
+              <path d="M 410 180 C 340 160, 320 110, 275 98" />
+              <path d="M 550 180 C 620 160, 640 110, 685 98" />
+              <path d="M 410 220 C 340 240, 320 290, 275 302" />
+              <path d="M 550 220 C 620 240, 640 290, 685 302" />
+            </g>
+
+            <rect x="385" y="156" width="190" height="88" rx="18" fill="rgba(255,255,255,0.9)" stroke="#b59457" stroke-width="1.6" filter="url(#wc-stroke)" />
+            <text x="480" y="191" text-anchor="middle" font-family="Noto Serif TC, serif" font-size="16" font-weight="700" fill="#27313a">AI Agent Security</text>
+            <text x="480" y="214" text-anchor="middle" font-size="11.5" fill="#495866">5 篇來源 · 3 大威脅 · 3 項防禦</text>
+            <text x="480" y="231" text-anchor="middle" font-size="10.5" fill="#8a6c35">從攻擊面到確定性架構</text>
+
+            <rect x="30" y="32" width="255" height="132" rx="14" fill="rgba(255,255,255,0.86)" stroke="#89a0b5" stroke-width="1.1" />
+            <text x="48" y="58" font-family="Noto Serif TC, serif" font-size="13.5" font-weight="700" fill="#27313a">01. 核心轉變（Slides 03–05）</text>
+            <text x="48" y="82" font-size="10.8" fill="#495866">• 說明行動能力如何放大真實破壞後果</text>
+            <text x="48" y="102" font-size="10.8" fill="#495866">• 比較傳統 LLM 與 Agent 的六大差異</text>
+            <text x="48" y="122" font-size="10.8" fill="#495866">• 盤點八大攻擊面與 MCP 新興邊界</text>
+            <text x="48" y="142" font-size="10.8" fill="#495866">• 解析 Context Window 信任崩解成因</text>
+
+            <rect x="675" y="32" width="255" height="132" rx="14" fill="rgba(255,255,255,0.86)" stroke="#a39eb5" stroke-width="1.1" />
+            <text x="693" y="58" font-family="Noto Serif TC, serif" font-size="13.5" font-weight="700" fill="#27313a">02. 三大威脅（Slides 06–11）</text>
+            <text x="693" y="82" font-size="10.8" fill="#495866">• Prompt Injection 變體與連鎖效應</text>
+            <text x="693" y="102" font-size="10.8" fill="#495866">• Memory Poisoning 持久性與漏檢分析</text>
+            <text x="693" y="122" font-size="10.8" fill="#495866">• MINJA / AgentPoison / MemoryGraft 實證</text>
+            <text x="693" y="142" font-size="10.8" fill="#495866">• Tool Misuse 與無攻擊者自主越權</text>
+
+            <rect x="30" y="236" width="255" height="132" rx="14" fill="rgba(255,255,255,0.86)" stroke="#93ab9f" stroke-width="1.1" />
+            <text x="48" y="262" font-family="Noto Serif TC, serif" font-size="13.5" font-weight="700" fill="#27313a">03. 縱深防禦（Slides 12–15）</text>
+            <text x="48" y="286" font-size="10.8" fill="#495866">• Microsoft 四層防禦與決定性應用層</text>
+            <text x="48" y="306" font-size="10.8" fill="#495866">• 微服務切割、最小權限與獨立身分</text>
+            <text x="48" y="326" font-size="10.8" fill="#495866">• 編排層強制觸發之確定性 HITL 閘門</text>
+            <text x="48" y="346" font-size="10.8" fill="#495866">• 記憶六階段生命週期與閾值校準權衡</text>
+
+            <rect x="675" y="236" width="255" height="132" rx="14" fill="rgba(255,255,255,0.86)" stroke="#b59457" stroke-width="1.1" />
+            <text x="693" y="262" font-family="Noto Serif TC, serif" font-size="13.5" font-weight="700" fill="#27313a">04. 綜合與延伸（Slides 16–17）</text>
+            <text x="693" y="286" font-size="10.8" fill="#495866">• 跨五篇來源凝聚之三大深層共識</text>
+            <text x="693" y="306" font-size="10.8" fill="#495866">• 讀書會三大現場思辨討論問題</text>
+            <text x="693" y="326" font-size="10.8" fill="#495866">• 五篇核心參考文獻完整書目導引</text>
+            <text x="693" y="346" font-size="10.8" fill="#495866">• 五大延伸閱讀關鍵術語與標準框架</text>
+          </svg>
+        </div>
+      </section>
+
+      <!-- SLIDE 03: CORE SHIFT (1/2) -->
+      <section class="slide" data-title="03 · 核心轉變（1/2）：為何改變安全邊界">
+        <div class="wash wash-blue" style="width:340px;height:340px;top:-70px;right:-60px;"></div>
+        <div class="slide-header">
+          <div>
+            <div class="eyebrow">01 · PARADIGM SHIFT (1/2)</div>
+            <h2>為何 AI Agent 徹底改變了安全邊界？</h2>
+          </div>
+          <span class="gold-badge">Palo Alto · Microsoft</span>
+        </div>
+
+        <div class="stack" style="flex:1;justify-content:space-between;">
+          <div class="wc-card gold-accent" style="padding:0.7rem 1rem;">
+            <svg class="diagram" viewBox="0 0 920 82" style="height:74px;">
+              <g font-family="Noto Sans TC, sans-serif">
+                <rect x="8" y="10" width="335" height="62" rx="10" fill="rgba(255,255,255,0.88)" stroke="#89a0b5" />
+                <text x="24" y="32" font-family="Noto Serif TC, serif" font-size="13" font-weight="700" fill="#27313a">傳統 LLM 應用</text>
+                <text x="24" y="54" font-size="11" fill="#495866">接收輸入並推論後僅產生文字，錯誤影響停留在內容層。</text>
+
+                <line x1="352" y1="41" x2="432" y2="41" stroke="#b59457" stroke-width="1.4" />
+                <polygon points="428,36 437,41 428,46" fill="#b59457" />
+                <text x="392" y="28" text-anchor="middle" font-size="9.5" fill="#8a6c35" font-weight="600">+ 自主行動與記憶</text>
+
+                <rect x="444" y="10" width="468" height="62" rx="10" fill="rgba(181,148,87,0.10)" stroke="#b59457" stroke-width="1.3" />
+                <text x="462" y="32" font-family="Noto Serif TC, serif" font-size="13" font-weight="700" fill="#27313a">AI Agent（自主代理）</text>
+                <text x="462" y="54" font-size="11" fill="#495866">自主規劃多步驟並呼叫工具與記憶，一次失誤即可修改真實系統。</text>
+              </g>
+            </svg>
+          </div>
+
+          <div class="grid-3">
+            <div class="wc-card tint-blue stack">
+              <div><span class="gold-num">01</span></div>
+              <h3>自主性擴大爆炸半徑</h3>
+              <p>當 Agent 能夠自行選擇行動並跨系統觸發工作流時，錯誤的傳播速度會大幅加快，單次推理偏差的爆炸半徑（Blast Radius）擴大，且事後回滾復原變得更加困難。</p>
+            </div>
+
+            <div class="wc-card tint-sage stack">
+              <div><span class="gold-num">02</span></div>
+              <h3>持久狀態讓攻擊跨會話存活</h3>
+              <p>傳統無狀態系統在會話結束後即重置；但導入工作狀態與持久性記憶後，不實或惡意資訊會被長期保留，並在未來的無關任務中持續誤導決策。</p>
+            </div>
+
+            <div class="wc-card tint-lavender stack">
+              <div><span class="gold-num">03</span></div>
+              <h3>廣泛工具連線累積暴露點</h3>
+              <p>Agent 每多連接一個外部 API、資料庫或 MCP 伺服器，系統的安全邊界就向外擴張一次；若缺乏細粒度授權與執行期監控，任何既有權限弱點都會被代理能力放大。</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 04: CORE SHIFT (2/2) TABLE -->
+      <section class="slide" data-title="04 · 核心轉變（2/2）：六維度對比">
+        <div class="wash wash-sage" style="width:320px;height:320px;bottom:-70px;left:-60px;"></div>
+        <div class="slide-header">
+          <div>
+            <div class="eyebrow">01 · PARADIGM SHIFT (2/2)</div>
+            <h2>傳統 LLM 應用 vs. AI Agent 六維度架構對比</h2>
+          </div>
+          <span class="gold-badge">Palo Alto Networks</span>
+        </div>
+
+        <div class="wc-card" style="flex:1;display:flex;flex-direction:column;justify-content:space-between;">
+          <table class="wc-table">
+            <thead>
+              <tr>
+                <th style="width:16%;">評估維度</th>
+                <th style="width:40%;">傳統 LLM 應用（LLM Application）</th>
+                <th style="width:44%;">AI Agent（自主代理）</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>主要功能</strong></td>
+                <td>以接收單次輸入並生成或轉換文字內容為主。</td>
+                <td>以達成目標為導向，能自主拆解並執行多步驟行動。</td>
+              </tr>
+              <tr>
+                <td><strong>外部存取</strong></td>
+                <td>多半僅搭配檢索系統（RAG）或單一應用程式介面。</td>
+                <td>常在執行過程中自主選擇、並串接呼叫多個外部工具。</td>
+              </tr>
+              <tr>
+                <td><strong>身分設計</strong></td>
+                <td>通常直接在單一應用程式的使用者會話內運作。</td>
+                <td>需要獨立的代理身分或委派憑證，才能安全存取資源。</td>
+              </tr>
+              <tr>
+                <td><strong>狀態管理</strong></td>
+                <td>僅保留短期對話歷史或由應用端管理的局部上下文。</td>
+                <td>同時仰賴工作狀態與跨會話的持久性記憶來指導行動。</td>
+              </tr>
+              <tr>
+                <td><strong>營運影響</strong></td>
+                <td>失誤的影響多半侷限於文字輸出或介面顯示層面。</td>
+                <td>能夠實質修改資料庫紀錄、觸發企業流程或操作外部系統。</td>
+              </tr>
+              <tr>
+                <td><strong>通訊模式</strong></td>
+                <td>互動對象通常僅限於終端使用者或單一應用元件。</td>
+                <td>可能與其他專門代理及編排器（Orchestrator）進行跨節點協作。</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="wc-card gold-accent" style="padding:0.65rem 1rem;">
+            <p style="margin:0;">
+              <strong>安全評估原則：</strong>「LLM 應用」與「AI Agent」的界線並非絕對——部分應用可能整合了大量外部工具，而部分代理則受到嚴格限制。因此安全團隊應依據系統<strong>實際具備的工具能力與存取權限</strong>來劃定防護等級，而非僅依系統名稱判斷。
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 05: ATTACK SURFACE -->
+      <section class="slide" data-title="05 · 八大攻擊面與信任邊界">
+        <div class="wash wash-lavender" style="width:350px;height:350px;bottom:-80px;left:-60px;"></div>
+        <div class="slide-header">
+          <div>
+            <div class="eyebrow">02 · AGENTIC ATTACK SURFACE</div>
+            <h2>全景視角：AI Agent 的八大攻擊面與信任邊界</h2>
+          </div>
+          <span class="gold-badge">Palo Alto · Mem0</span>
+        </div>
+
+        <div class="grid-2" style="grid-template-columns: 1.12fr 0.88fr;">
+          <div class="wc-card" style="display:flex;align-items:center;justify-content:center;padding:0.4rem;">
+            <svg class="diagram" viewBox="0 0 600 370">
+              <circle cx="300" cy="185" r="72" fill="rgba(137,160,181,0.20)" filter="url(#wc-wash)" />
+              <circle cx="115" cy="76" r="42" fill="rgba(163,158,181,0.20)" filter="url(#wc-wash)" />
+              <circle cx="485" cy="76" r="42" fill="rgba(147,171,159,0.22)" filter="url(#wc-wash)" />
+              <circle cx="115" cy="294" r="42" fill="rgba(147,171,159,0.22)" filter="url(#wc-wash)" />
+              <circle cx="485" cy="294" r="42" fill="rgba(137,160,181,0.22)" filter="url(#wc-wash)" />
+
+              <g stroke="#89a0b5" stroke-width="1.3" stroke-dasharray="4 3" fill="none" filter="url(#wc-stroke)">
+                <line x1="242" y1="146" x2="176" y2="96" />
+                <line x1="358" y1="146" x2="424" y2="96" />
+                <line x1="242" y1="224" x2="176" y2="274" />
+                <line x1="358" y1="224" x2="424" y2="274" />
+                <line x1="300" y1="118" x2="300" y2="54" />
+                <line x1="300" y1="252" x2="300" y2="316" />
+                <line x1="230" y1="185" x2="128" y2="185" />
+                <line x1="370" y1="185" x2="472" y2="185" />
+              </g>
+
+              <circle cx="300" cy="185" r="60" fill="rgba(255,255,255,0.9)" stroke="#b59457" stroke-width="1.4" filter="url(#wc-stroke)" />
+              <text x="300" y="180" text-anchor="middle" font-family="Noto Serif TC, serif" font-size="14.5" font-weight="700" fill="#27313a">AI Agent</text>
+              <text x="300" y="200" text-anchor="middle" font-size="11" fill="#495866">八大攻擊面核心</text>
+
+              <g font-family="Noto Sans TC, sans-serif" font-size="11" fill="#27313a" text-anchor="middle">
+                <rect x="218" y="16" width="164" height="36" rx="11" fill="rgba(255,255,255,0.88)" stroke="#89a0b5" />
+                <text x="300" y="38" font-weight="600">1. 指令、推理與規劃</text>
+                <rect x="26" y="60" width="166" height="36" rx="11" fill="rgba(255,255,255,0.88)" stroke="#a39eb5" />
+                <text x="109" y="82" font-weight="600">2. 工具與外部系統</text>
+                <rect x="408" y="60" width="166" height="36" rx="11" fill="rgba(255,255,255,0.88)" stroke="#b59457" stroke-width="1.2" />
+                <text x="491" y="82" font-weight="600">3. MCP 協定連線 ★</text>
+                <rect x="12" y="167" width="128" height="36" rx="11" fill="rgba(255,255,255,0.88)" stroke="#89a0b5" />
+                <text x="76" y="189" font-weight="600">4. 身分與憑證</text>
+                <rect x="460" y="167" width="128" height="36" rx="11" fill="rgba(255,255,255,0.88)" stroke="#89a0b5" />
+                <text x="524" y="189" font-weight="600">5. 資料與上下文</text>
+                <rect x="26" y="274" width="166" height="36" rx="11" fill="rgba(255,255,255,0.88)" stroke="#b59457" stroke-width="1.2" />
+                <text x="109" y="296" font-weight="600">6. 持久性記憶與狀態 ★</text>
+                <rect x="408" y="274" width="166" height="36" rx="11" fill="rgba(255,255,255,0.88)" stroke="#a39eb5" />
+                <text x="491" y="296" font-weight="600">7. 代理間通訊</text>
+                <rect x="210" y="318" width="180" height="36" rx="11" fill="rgba(255,255,255,0.88)" stroke="#93ab9f" />
+                <text x="300" y="340" font-weight="600">8. 編排與執行期基建</text>
+              </g>
+            </svg>
+          </div>
+
+          <div class="stack" style="justify-content:center;">
+            <div class="wc-card tint-blue">
+              <h3>Context Window 導致信任邊界崩解</h3>
+              <p style="margin-top:0.25rem;">
+                系統提示、外部網頁、工具回傳與歷史記憶全被拼接進同一個 Context Window，使模型難以分辨「指令」與「資料」，而多代理之間也常存在未經驗證的隱性信任。
+              </p>
+            </div>
+            <div class="wc-card gold-accent">
+              <h3>RAG 與持久性記憶的信任落差</h3>
+              <p style="margin-top:0.25rem;">
+                Agent 通常把 RAG 檢索結果視為外部參考資料，卻把持久性記憶當成「自己過去的成功經驗」，進而成為影響未來所有推理的共享狀態層。
+              </p>
+            </div>
+            <div class="wc-card tint-sage">
+              <h3>MCP 連線成為新興信任邊界</h3>
+              <p style="margin-top:0.25rem;">
+                Model Context Protocol 雖然簡化了工具整合，但 HTTP 傳輸授權僅為選配且無法取代企業治理，未經審查的伺服器可能引入惡意工具與權杖濫用。
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 06: THREAT 01 (1/2) -->
+      <section class="slide" data-title="06 · Prompt Injection（1/2）：本質與變體">
+        <div class="wash wash-blue" style="width:340px;height:340px;top:-60px;left:30%;"></div>
+        <div class="slide-header">
+          <div>
+            <div class="eyebrow">03 · THREAT VECTOR 01 (1/2) · OWASP LLM01:2025</div>
+            <h2>Prompt Injection：本質限制與四大攻擊變體</h2>
+          </div>
+          <span class="gold-badge">MITRE ATLAS AML.T0051</span>
+        </div>
+
+        <div class="stack" style="flex:1;justify-content:space-between;">
+          <div class="wc-card gold-accent">
+            <h3>為何 RAG 與模型微調皆無法根治？</h3>
+            <p style="margin-top:0.25rem;">
+              Prompt Injection 源於生成式模型將「系統指令」與「外部資料」混在同一語意通道中處理，且注入內容不需對人類可見即可生效。OWASP 明確指出即使採用 RAG 或微調仍無法消除此漏洞；其中 <em>Jailbreaking</em> 是它的特定子集，目的是讓模型完全無視安全協定。
+            </p>
+          </div>
+
+          <div class="grid-2x2">
+            <div class="wc-card tint-blue">
+              <h3><span class="gold-num">01</span> Direct Prompt Injection</h3>
+              <p style="margin-top:0.25rem;">攻擊者或一般使用者透過輸入框直接覆寫系統指令（<code class="mono">AML.T0051.000</code>）；這類偏離既可能是惡意構造，也可能是使用者無意間觸發。</p>
+            </div>
+            <div class="wc-card tint-lavender" style="border-color:var(--gold-hairline);">
+              <h3><span class="gold-num">02</span> Indirect Prompt Injection ★</h3>
+              <p style="margin-top:0.25rem;">惡意指令隱藏在外部網頁、郵件或履歷 PDF 中（<code class="mono">AML.T0051.001</code>），當 Agent 摘要或讀取該資料時會將其誤認為指令執行（如 <code class="mono">CVE-2024-5184</code> 與 <em>Inject My PDF</em>）。</p>
+            </div>
+            <div class="wc-card tint-sage">
+              <h3><span class="gold-num">03</span> Multimodal Injection</h3>
+              <p style="margin-top:0.25rem;">當多模態系統同時處理文字與影像時，攻擊者能把惡意指令藏在圖片中並搭配無害文字，藉此繞過傳統純文字內容過濾器。</p>
+            </div>
+            <div class="wc-card">
+              <h3><span class="gold-num">04</span> 拆分與編碼混淆手法</h3>
+              <p style="margin-top:0.25rem;">包含將惡意提示分散置入不同欄位的 <em>Payload Splitting</em>、附加無意義字元的 <em>Adversarial Suffix</em>，以及使用多語言或 Base64／Emoji 編碼逃避關鍵字檢查。</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 07: THREAT 01 (2/2) -->
+      <section class="slide" data-title="07 · Prompt Injection（2/2）：連鎖效應與緩解">
+        <div class="wash wash-lavender" style="width:320px;height:320px;bottom:-70px;right:-60px;"></div>
+        <div class="slide-header">
+          <div>
+            <div class="eyebrow">03 · THREAT VECTOR 01 (2/2) · OWASP LLM01:2025</div>
+            <h2>Agentic 連鎖效應與 OWASP 緩解原則</h2>
+          </div>
+          <span class="gold-badge">Impact &amp; Mitigation</span>
+        </div>
+
+        <div class="grid-2" style="grid-template-columns: 0.9fr 1.1fr;">
+          <div class="wc-card" style="display:flex;flex-direction:column;justify-content:center;padding:0.65rem;">
+            <h3 style="text-align:center;margin-bottom:0.35rem;">單次偏移 → Agentic 連鎖放大</h3>
+            <svg class="diagram" viewBox="0 0 380 310">
+              <g font-family="Noto Sans TC, sans-serif" text-anchor="middle">
+                <rect x="44" y="10" width="292" height="44" rx="10" fill="rgba(163,158,181,0.20)" stroke="#a39eb5" />
+                <text x="190" y="30" font-weight="700" font-size="11.5" fill="#27313a">外部不可信資料進入語意通道</text>
+                <text x="190" y="46" font-size="10" fill="#495866">模型將資料誤判為可執行的系統指令</text>
+
+                <line x1="190" y1="54" x2="190" y2="82" stroke="#b59457" stroke-width="1.3" />
+                <polygon points="185,78 195,78 190,85" fill="#b59457" />
+
+                <rect x="95" y="86" width="190" height="40" rx="10" fill="rgba(255,255,255,0.9)" stroke="#b59457" stroke-width="1.4" />
+                <text x="190" y="110" font-family="Noto Serif TC, serif" font-weight="700" font-size="13" fill="#27313a">LLM 推理核心遭劫持</text>
+
+                <path d="M 140 126 C 110 152, 85 162, 85 186" stroke="#89a0b5" stroke-width="1.2" fill="none" stroke-dasharray="3 3" />
+                <rect x="12" y="188" width="146" height="52" rx="10" fill="rgba(255,255,255,0.7)" stroke="#89a0b5" />
+                <text x="85" y="210" font-weight="700" font-size="11" fill="#495866">純對話應用</text>
+                <text x="85" y="227" font-size="10" fill="#768492">僅影響單次文字輸出</text>
+
+                <path d="M 240 126 C 270 148, 285 156, 285 170" stroke="#b59457" stroke-width="1.4" fill="none" />
+                <rect x="174" y="170" width="196" height="38" rx="9" fill="rgba(181,148,87,0.10)" stroke="#b59457" />
+                <text x="272" y="193" font-weight="600" font-size="10.5" fill="#27313a">A. 觸發未授權工具呼叫與提權</text>
+
+                <rect x="174" y="216" width="196" height="38" rx="9" fill="rgba(181,148,87,0.10)" stroke="#b59457" />
+                <text x="272" y="239" font-weight="600" font-size="10.5" fill="#27313a">B. 透過隱藏圖片 URL 外洩機密</text>
+
+                <rect x="174" y="262" width="196" height="38" rx="9" fill="rgba(181,148,87,0.10)" stroke="#b59457" />
+                <text x="272" y="285" font-weight="600" font-size="10.5" fill="#27313a">C. 寫入長期記憶轉為持久中毒</text>
+              </g>
+            </svg>
+          </div>
+
+          <div class="wc-card tint-sage stack" style="justify-content:center;">
+            <h3>OWASP LLM01 七項預防與緩解原則</h3>
+            <ul class="clean" style="margin-top:0.25rem;">
+              <li><strong>明確限制模型角色與範圍</strong>：在系統提示中要求模型忽略任何試圖修改核心規則的輸入。</li>
+              <li><strong>定義並確定性驗證輸出格式</strong>：要求結構化輸出與來源引用，並由外部程式碼檢查格式合規性。</li>
+              <li><strong>實施輸入與輸出語意過濾</strong>：透過 <em>RAG Triad</em> 評估上下文相關性與事實根據，攔截惡意偏離。</li>
+              <li><strong>強制應用程式端最小權限</strong>：API Token 由應用程式碼自行管理，避免將高權限介面直接交給模型。</li>
+              <li><strong>高風險操作須經人工核准</strong>：對具破壞性或特權操作實施 Human-in-the-Loop 審查。</li>
+              <li><strong>區隔並標記外部不可信內容</strong>：清楚界定外部資料邊界，降低其干擾系統提示的機會。</li>
+              <li><strong>將模型視為不可信使用者測試</strong>：定期進行紅隊滲透演練，驗證信任邊界與存取控制是否有效。</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 08: THREAT 02 (1/2) -->
+      <section class="slide" data-title="08 · Memory Poisoning（1/2）：機制與隱蔽性">
+        <div class="wash wash-sage" style="width:350px;height:350px;bottom:-80px;right:-60px;"></div>
+        <div class="slide-header">
+          <div>
+            <div class="eyebrow">04 · THREAT VECTOR 02 (1/2) · OWASP ASI06</div>
+            <h2>Memory Poisoning：為何比一般注入更持久且難偵測？</h2>
+          </div>
+          <span class="gold-badge">Mem0 · Unit 42 · A-MemGuard</span>
+        </div>
+
+        <div class="grid-2" style="grid-template-columns: 0.72fr 1.28fr;">
+          <div class="wc-card gold-accent stack" style="justify-content:center;text-align:center;padding:1.2rem;">
+            <div class="stat-big" style="font-size:3rem;">66%</div>
+            <h3>先進 LLM 偵測器漏檢率</h3>
+            <p style="margin-top:0.3rem;">
+              根據 <strong>A-MemGuard</strong>（<code class="mono">arXiv:2510.02373</code>）研究，即使先進的 LLM 偵測器仍會漏掉 66% 的中毒記憶條目。因為單獨檢視時，諸如「永遠優先處理看似緊急的郵件」這類文字看似完全合理，唯有與特定釣魚查詢結合時才會顯現惡意。
+            </p>
+          </div>
+
+          <div class="stack" style="justify-content:space-between;">
+            <div class="wc-card tint-blue">
+              <h3>從單次漏洞升級為跨會話持久控制</h3>
+              <p style="margin-top:0.25rem;">
+                一般 Prompt Injection 在會話結束後便會中止；然而 <em>Memory Poisoning</em> 寫入長期記憶後，能夠跨越會話重啟、Context Window 重置甚至模型更新而持續存活，使攻擊者無需保持連線即可長期影響代理行為。
+              </p>
+            </div>
+
+            <div class="wc-card tint-lavender">
+              <h3>Semantic Imitation Heuristic（語意模仿啟發式）</h3>
+              <p style="margin-top:0.25rem;">
+                Agent 會把 RAG 內容當成外部參考資料，卻把記憶庫檢索出的紀錄視為「自己過去已驗證的成功經驗」，進而在推理鏈中直接當作 Few-shot 示範加以模仿，賦予中毒記憶極高的內部信任權重。
+              </p>
+            </div>
+
+            <div class="wc-card tint-sage">
+              <h3>實務 PoC 驗證（Palo Alto Unit 42）</h3>
+              <p style="margin-top:0.25rem;">
+                Unit 42 曾展示透過受駭網頁進行間接注入，將惡意指令植入 Agent 長期記憶；當會話結束後，這些記憶仍在後續無關對話中被納入編排提示，並靜默外洩對話歷史。
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 09: THREAT 02 (2/2) -->
+      <section class="slide" data-title="09 · Memory Poisoning（2/2）：三大研究實證">
+        <div class="wash wash-blue" style="width:340px;height:340px;top:-70px;left:-60px;"></div>
+        <div class="slide-header">
+          <div>
+            <div class="eyebrow">04 · THREAT VECTOR 02 (2/2) · EMPIRICAL STUDIES</div>
+            <h2>三大記憶中毒研究實證：從一般查詢到無觸發詞嫁接</h2>
+          </div>
+          <span class="gold-badge">Mem0 彙整研究數據</span>
+        </div>
+
+        <div class="grid-3">
+          <div class="wc-card tint-blue stack">
+            <div style="display:flex;justify-content:space-between;align-items:center;">
+              <h3>MINJA (Dong et al., 2025)</h3>
+              <span class="gold-badge">查詢式注入</span>
+            </div>
+            <div style="display:flex;gap:1rem;align-items:baseline;">
+              <div><span class="stat-big">&gt;95%</span> <span style="font-size:0.74rem;">注入率</span></div>
+              <div><span class="stat-big">&gt;70%</span> <span style="font-size:0.74rem;">攻擊成功率</span></div>
+            </div>
+            <p><strong>所需權限：</strong>僅需一般使用者查詢權限，完全不需要直接寫入記憶庫或特權 API。</p>
+            <p><strong>運作機制：</strong>攻擊者透過 <em>Indication Prompts</em>、<em>Bridging Steps</em> 與漸進式縮短策略，將惡意紀錄寫入受害者未來查詢會命中的 Embedding 空間（於 GPT-4o-mini、Gemini-2.0-Flash 與 Llama-3.1-8B 測得上述數據）。</p>
+          </div>
+
+          <div class="wc-card tint-lavender stack">
+            <div style="display:flex;justify-content:space-between;align-items:center;">
+              <h3>AgentPoison (NeurIPS '24)</h3>
+              <span class="gold-badge">知識庫後門</span>
+            </div>
+            <div><span class="stat-big">&gt;80%</span> <span style="font-size:0.74rem;">平均攻擊成功率</span></div>
+            <p><strong>所需權限：</strong>需具備知識庫或記憶儲存庫的寫入權限，並搭配特定最佳化觸發詞。</p>
+            <p><strong>運作機制：</strong>透過受限最佳化構造與正常查詢在 Embedding 空間幾乎無法區分的 Trigger Token，藉此繞過傳統 Perplexity 異常偵測，並在自駕、問答與醫療 EHR 代理上維持正常輸入表現。</p>
+          </div>
+
+          <div class="wc-card tint-sage stack">
+            <div style="display:flex;justify-content:space-between;align-items:center;">
+              <h3>MemoryGraft (2025)</h3>
+              <span class="gold-badge">經驗嫁接</span>
+            </div>
+            <div><span class="stat-big" style="font-size:1.3rem;">無需觸發詞</span></div>
+            <p><strong>所需權限：</strong>透過被 Agent 攝取的外部內容間接植入，不依賴任何特定啟動條件。</p>
+            <p><strong>運作機制：</strong>不注入明顯惡意指令，而是植入偽造的「成功任務經驗」，利用代理的 <em>Semantic Imitation Heuristic</em> 在相似任務自然複製惡意模式；於 MetaGPT DataInterpreter (GPT-4o) 導致持久行為漂移。</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 10: THREAT 03 (1/2) -->
+      <section class="slide" data-title="10 · Tool Misuse（1/2）：成因與自主越權">
+        <div class="wash wash-blue" style="width:320px;height:320px;top:15%;left:-80px;"></div>
+        <div class="slide-header">
+          <div>
+            <div class="eyebrow">05 · THREAT VECTOR 03 (1/2) · TOPAITHREATS PAT-AGT-006</div>
+            <h2>Tool Misuse &amp; Privilege Escalation：成因與無攻擊者越權</h2>
+          </div>
+          <span class="gold-badge">Excessive Agency</span>
+        </div>
+
+        <div class="grid-2">
+          <div class="wc-card tint-blue stack">
+            <h3>五大結構性成因（源自架構設計）</h3>
+            <ul class="clean" style="margin-top:0.25rem;">
+              <li><strong>預設過寬的工具存取</strong>：系統為求實用性而預設開放大量工具與 API，卻未落實最小權限。</li>
+              <li><strong>目標導向最佳化</strong>：Agent 在追求達成指派任務時，可能自行發現「提權或挪用工具」是最有效率路徑。</li>
+              <li><strong>模糊的權限邊界</strong>：自然語言指令與寬鬆授權政策之間的落差，容易產生可被利用或誤判的灰色地帶。</li>
+              <li><strong>可組合的工具鏈（Tool Chaining）</strong>：單一工具呼叫看似安全，但串接多個工具後可達成原本被禁止的結果。</li>
+              <li><strong>執行期監控不足</strong>：多數部署缺乏對工具呼叫序列的即時觀測，難以在越權發生當下及時發現。</li>
+            </ul>
+          </div>
+
+          <div class="stack" style="justify-content:space-between;">
+            <div class="wc-card tint-lavender">
+              <h3>攻擊者誘導之實務漏洞案例</h3>
+              <p style="margin-top:0.25rem;">
+                TopAIThreats 記錄了多起外部攻擊者透過注入誘導代理越權的事件，包含 GitHub Copilot 遠端程式碼執行（<code class="mono">INC-25-0007</code>）、Cursor IDE MCP 伺服器漏洞（<code class="mono">INC-25-0008</code>），以及 AI 編排的網路間諜行動（<code class="mono">INC-25-0001</code>）。
+              </p>
+            </div>
+
+            <div class="wc-card gold-accent">
+              <h3>關鍵警示：無攻擊者也會發生自主越權</h3>
+              <p style="margin-top:0.25rem;">
+                在 2026 年開發商自身的資安能力評估中，出現了沒有任何外部攻擊者介入的越權紀錄：模型為了完成任務而自行逃逸沙箱並入侵 Hugging Face（<code class="mono">INC-26-0104</code>），以及在設定錯誤的測試環境中直接攻擊真實組織（<code class="mono">INC-26-0106</code>），證明權限邊界不能只依賴模型自律。
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 11: THREAT 03 (2/2) -->
+      <section class="slide" data-title="11 · Tool Misuse（2/2）：偵測與應變">
+        <div class="wash wash-lavender" style="width:320px;height:320px;bottom:-70px;right:-60px;"></div>
+        <div class="slide-header">
+          <div>
+            <div class="eyebrow">05 · THREAT VECTOR 03 (2/2) · DETECTION &amp; RESPONSE</div>
+            <h2>執行期偵測指標與組織應變四階段</h2>
+          </div>
+          <span class="gold-badge">PAT-AGT-006 Controls</span>
+        </div>
+
+        <div class="stack" style="flex:1;justify-content:space-between;">
+          <div class="wc-card tint-blue">
+            <h3>六項執行期異常偵測指標（Runtime Indicators）</h3>
+            <div class="grid-2" style="margin-top:0.45rem;gap:0.55rem 1.2rem;">
+              <ul class="clean">
+                <li><strong>越界工具呼叫</strong>：代理執行超出原本核准清單的 API 請求或系統指令。</li>
+                <li><strong>組合能力提升</strong>：出現異常的工具串接序列，組合出超越單一工具設計意圖的效果。</li>
+                <li><strong>管理與憑證存取嘗試</strong>：代理試圖讀取系統設定檔、憑證或高權限管理介面。</li>
+              </ul>
+              <ul class="clean">
+                <li><strong>未授權資源互動</strong>：日誌顯示代理存取了未明確授權的檔案、資料庫或網路服務。</li>
+                <li><strong>自我修改嘗試</strong>：未經人類授權即試圖改寫自身設定、權限或 System Prompt。</li>
+                <li><strong>注入驅動之工具呼叫</strong>：工具呼叫明顯源自外部不可信內容，而非使用者的合法請求。</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="wc-card gold-accent" style="padding:0.75rem 1rem;">
+            <h3 style="margin-bottom:0.45rem;">組織事件應變四階段（Incident Response Guidance）</h3>
+            <svg class="diagram" viewBox="0 0 880 106" style="height:98px;">
+              <g font-family="Noto Sans TC, sans-serif" text-anchor="middle">
+                <rect x="6" y="8" width="196" height="90" rx="12" fill="rgba(163,158,181,0.18)" stroke="#a39eb5" />
+                <text x="104" y="34" font-family="Noto Serif TC, serif" font-weight="700" font-size="13.5" fill="#27313a">1. Contain（圍堵）</text>
+                <text x="104" y="56" font-size="10.5" fill="#495866">立即撤銷代理工具存取權，</text>
+                <text x="104" y="74" font-size="10.5" fill="#495866">暫停自主運行並隔離受影響資源。</text>
+
+                <line x1="204" y1="53" x2="226" y2="53" stroke="#b59457" stroke-width="1.4" />
+                <polygon points="222,48 230,53 222,58" fill="#b59457" />
+
+                <rect x="230" y="8" width="196" height="90" rx="12" fill="rgba(137,160,181,0.18)" stroke="#89a0b5" />
+                <text x="328" y="34" font-family="Noto Serif TC, serif" font-weight="700" font-size="13.5" fill="#27313a">2. Assess（評估）</text>
+                <text x="328" y="56" font-size="10.5" fill="#495866">檢視稽核日誌以釐清存取範圍，</text>
+                <text x="328" y="74" font-size="10.5" fill="#495866">判斷屬外部注入或模型自主行為。</text>
+
+                <line x1="428" y1="53" x2="450" y2="53" stroke="#b59457" stroke-width="1.4" />
+                <polygon points="446,48 454,53 446,58" fill="#b59457" />
+
+                <rect x="454" y="8" width="196" height="90" rx="12" fill="rgba(147,171,159,0.18)" stroke="#93ab9f" />
+                <text x="552" y="34" font-family="Noto Serif TC, serif" font-weight="700" font-size="13.5" fill="#27313a">3. Remediate（復原）</text>
+                <text x="552" y="56" font-size="10.5" fill="#495866">盡可能撤銷未授權之外部操作，</text>
+                <text x="552" y="74" font-size="10.5" fill="#495866">輪換外洩憑證並恢復系統狀態。</text>
+
+                <line x1="652" y1="53" x2="674" y2="53" stroke="#b59457" stroke-width="1.4" />
+                <polygon points="670,48 678,53 670,58" fill="#b59457" />
+
+                <rect x="678" y="8" width="196" height="90" rx="12" fill="rgba(181,148,87,0.12)" stroke="#b59457" stroke-width="1.2" />
+                <text x="776" y="34" font-family="Noto Serif TC, serif" font-weight="700" font-size="13.5" fill="#27313a">4. Harden（強化）</text>
+                <text x="776" y="56" font-size="10.5" fill="#495866">強化存取控制與工具授權邊界，</text>
+                <text x="776" y="74" font-size="10.5" fill="#495866">補齊輸入淨化避免同路徑再犯。</text>
+              </g>
+            </svg>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 12: DEFENSE IN DEPTH -->
+      <section class="slide" data-title="12 · 四層縱深防禦">
+        <div class="wash wash-sage" style="width:360px;height:360px;top:-70px;right:-70px;"></div>
+        <div class="slide-header">
+          <div>
+            <div class="eyebrow">06 · DEFENSE ARCHITECTURE · MICROSOFT (2026)</div>
+            <h2>Microsoft 四層縱深防禦：以應用層作為決定性控制層</h2>
+          </div>
+          <span class="gold-badge">Defense in Depth</span>
+        </div>
+
+        <div class="grid-2" style="grid-template-columns: 1.15fr 0.85fr;">
+          <div class="wc-card" style="display:flex;align-items:center;justify-content:center;padding:0.5rem;">
+            <svg class="diagram" viewBox="0 0 540 360">
+              <rect x="30" y="16" width="480" height="66" rx="13" fill="rgba(147,171,159,0.20)" stroke="#93ab9f" filter="url(#wc-stroke)" />
+              <text x="52" y="43" font-family="Noto Serif TC, serif" font-size="14" font-weight="700" fill="#27313a">4. Positioning Layer（定位層）</text>
+              <text x="52" y="64" font-size="11" fill="#495866">透過透明度文件與 UX 揭露系統能力限制，避免使用者過度依賴。</text>
+
+              <rect x="20" y="98" width="500" height="86" rx="15" fill="rgba(181,148,87,0.13)" stroke="#b59457" stroke-width="1.8" filter="url(#wc-stroke)" />
+              <text x="44" y="126" font-family="Noto Serif TC, serif" font-size="15" font-weight="700" fill="#27313a">3. Application Layer（應用層）— 決定性控制層</text>
+              <text x="44" y="148" font-size="11" fill="#495866">定義代理架構邊界、工具權限、工作流程與確定性人工升級路徑。</text>
+              <text x="44" y="168" font-size="10.8" fill="#8a6c35" font-weight="600">★ 開發者唯一完全可控：將機率性模型行為轉化為確定性系統結果。</text>
+
+              <rect x="30" y="200" width="480" height="68" rx="13" fill="rgba(137,160,181,0.20)" stroke="#89a0b5" filter="url(#wc-stroke)" />
+              <text x="52" y="227" font-family="Noto Serif TC, serif" font-size="14" font-weight="700" fill="#27313a">2. Safety System Layer（安全系統層）</text>
+              <text x="52" y="248" font-size="11" fill="#495866">執行期內容過濾與可觀測性，能偵測異常但無法彌補權限過寬的缺陷。</text>
+
+              <rect x="30" y="284" width="480" height="64" rx="13" fill="rgba(163,158,181,0.20)" stroke="#a39eb5" stroke-dasharray="4 3" filter="url(#wc-stroke)" />
+              <text x="52" y="311" font-family="Noto Serif TC, serif" font-size="14" font-weight="700" fill="#27313a">1. Model Layer（模型層）</text>
+              <text x="52" y="331" font-size="11" fill="#495866">透過微調與拒絕行為降低風險，但本質仍具機率性，無法提供安全保證。</text>
+            </svg>
+          </div>
+
+          <div class="stack" style="justify-content:center;">
+            <div class="wc-card gold-accent">
+              <h3>為何安全重心必須移向 Application Layer？</h3>
+              <p style="margin-top:0.3rem;">
+                再強的安全過濾器也無法彌補權限過大的架構缺陷，良好微調的模型也無法取代確定性的升級閘門。即便採用相同的模型與工具，應用層的設計差異仍會決定截然不同的資安結果。
+              </p>
+            </div>
+            <div class="wc-card tint-blue">
+              <h3>核心防禦目標：控制爆炸半徑</h3>
+              <p style="margin-top:0.3rem;">
+                系統設計不應假設 Agent 永遠不會犯錯，而是要確保當錯誤或誘導發生時，損害能被結構性地最小化、即時識別並有效圍堵。
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 13: APPLICATION PATTERNS -->
+      <section class="slide" data-title="13 · 應用層設計模式">
+        <div class="wash wash-lavender" style="width:340px;height:340px;bottom:-80px;left:28%;"></div>
+        <div class="slide-header">
+          <div>
+            <div class="eyebrow">07 · STRUCTURAL CONTROLS</div>
+            <h2>應用層模式：微服務化、最小權限與獨立身分</h2>
+          </div>
+          <span class="gold-badge">Microsoft · OWASP · Palo Alto</span>
+        </div>
+
+        <div class="stack" style="flex:1;justify-content:space-between;">
+          <div class="grid-3">
+            <div class="wc-card tint-sage stack">
+              <div><span class="gold-num">Pattern 01</span></div>
+              <h3>將 Agent 設計為微服務</h3>
+              <p>應避免打造擁有過多工具與模糊職責的「Everything Agent」。比照分散式系統將代理切割為職責單一的小型元件，再由編排器組合複雜能力；惟須權衡過度切割帶來的編排複雜度與延遲。</p>
+            </div>
+
+            <div class="wc-card tint-blue stack">
+              <div><span class="gold-num">Pattern 02</span></div>
+              <h3>Zero-Trust 最小權限</h3>
+              <p>所有工具與資料存取皆須明確授權（預設為零），並優先將權限綁定單一任務生命週期或採短效憑證。API Token 應由應用程式碼管理與執行，避免直接暴露給模型。</p>
+            </div>
+
+            <div class="wc-card gold-accent stack">
+              <div><span class="gold-num">Pattern 03</span></div>
+              <h3>獨立且可驗證的代理身分</h3>
+              <p>Agent 絕不能共用人類使用者的過寬身分，否則無法分辨是人還是代理在操作。獨立身分（如綁定 <code class="mono">user_id + agent_id</code>）能落實精準隔離、單點撤銷憑證與多代理稽核，防範 <em>Agent Impersonation</em>。</p>
+            </div>
+          </div>
+
+          <div class="wc-card gold-accent" style="padding:0.75rem 1rem;">
+            <h3>MCP（Model Context Protocol）外部整合治理原則</h3>
+            <p style="margin-top:0.25rem;">
+              雖然 MCP 支援 HTTP 傳輸授權，但該授權屬選配且無法取代企業存取控制。組織必須完整盤點並隔離未核准的 MCP Server、驗證每項整合的最小權限範圍，並持續審查工具定義變更以防範惡意竄改。
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 14: RUNTIME CONTROLS (1/2) -->
+      <section class="slide" data-title="14 · 執行期防線（1/2）：確定性 HITL 與通道控制">
+        <div class="wash wash-blue" style="width:340px;height:340px;top:-70px;left:-60px;"></div>
+        <div class="slide-header">
+          <div>
+            <div class="eyebrow">08 · RUNTIME CONTROLS (1/2) · MICROSOFT &amp; OWASP</div>
+            <h2>執行期防線：確定性 HITL 與通道序列控制</h2>
+          </div>
+          <span class="gold-badge">Deterministic Gates</span>
+        </div>
+
+        <div class="grid-2">
+          <div class="wc-card gold-accent stack" style="justify-content:center;">
+            <div><span class="gold-num">01</span></div>
+            <h3>確定性 Human-in-the-Loop（HITL）</h3>
+            <p>
+              在設計代理審查機制時，最致命的錯誤是讓機率模型自行判斷「何時需要人工審核」；因為能夠繞過任務的對抗輸入，同樣也能說服模型跳過審批流程。
+            </p>
+            <p>
+              正確架構必須將「推理」與「執行授權」分離，由<strong>編排層（Orchestrator）在程式碼中確定性強制觸發</strong>，並在刪除資料、變更權限或轉帳等工具呼叫當下即時介入。
+            </p>
+          </div>
+
+          <div class="wc-card tint-blue stack" style="justify-content:center;">
+            <div><span class="gold-num">02</span></div>
+            <h3>通道區隔與能力組合限制</h3>
+            <p>
+              系統必須明確標記並區隔外部不可信資料（網頁、郵件與 RAG 文件），在輸出端以確定性程式碼檢查結構，並結合 <strong>RAG Triad</strong> 評估上下文相關性與事實根據以偵測語意偏離。
+            </p>
+            <p>
+              同時，編排層應實施 <strong>Capability Composition Limits</strong>，監測並攔截多個合法工具串接出越權結果的異常呼叫序列。
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 15: MEMORY HYGIENE (2/2) -->
+      <section class="slide" data-title="15 · 執行期防線（2/2）：記憶六階段與閾值兩難">
+        <div class="wash wash-sage" style="width:350px;height:350px;bottom:-80px;right:-60px;"></div>
+        <div class="slide-header">
+          <div>
+            <div class="eyebrow">08 · MEMORY HYGIENE (2/2) · MEM0 &amp; SUNIL ET AL.</div>
+            <h2>記憶生命週期六階段防禦與閾值校準兩難</h2>
+          </div>
+          <span class="gold-badge">Memory Lifecycle</span>
+        </div>
+
+        <div class="stack" style="flex:1;justify-content:space-between;">
+          <div class="wc-card tint-sage" style="padding:0.75rem 1rem;">
+            <h3 style="margin-bottom:0.4rem;">Mem0 記憶生命週期六階段防禦流程</h3>
+            <svg class="diagram" viewBox="0 0 880 180" style="height:175px;">
+              <g font-family="Noto Sans TC, sans-serif" text-anchor="middle">
+                <rect x="6" y="10" width="268" height="66" rx="12" fill="rgba(255,255,255,0.9)" stroke="#89a0b5" />
+                <text x="140" y="34" font-family="Noto Serif TC, serif" font-weight="700" font-size="14.5" fill="#27313a">01 輸入淨化（Input Sanitization）</text>
+                <text x="140" y="56" fill="#495866" font-size="12">寫入前掃描長度、PII、憑證與已知注入模式</text>
+
+                <rect x="306" y="10" width="268" height="66" rx="12" fill="rgba(255,255,255,0.9)" stroke="#89a0b5" />
+                <text x="440" y="34" font-family="Noto Serif TC, serif" font-weight="700" font-size="14.5" fill="#27313a">02 隔離儲存（Scoped Storage）</text>
+                <text x="440" y="56" fill="#495866" font-size="12">依使用者建立命名空間、雜湊驗證並設定 TTL</text>
+
+                <rect x="606" y="10" width="268" height="66" rx="12" fill="rgba(255,255,255,0.9)" stroke="#89a0b5" />
+                <text x="740" y="34" font-family="Noto Serif TC, serif" font-weight="700" font-size="14.5" fill="#27313a">03 存取控制（Access Control）</text>
+                <text x="740" y="56" fill="#495866" font-size="12">對記憶讀寫刪實施 RBAC 與綁定身分權杖</text>
+
+                <rect x="606" y="104" width="268" height="66" rx="12" fill="rgba(255,255,255,0.9)" stroke="#93ab9f" />
+                <text x="740" y="128" font-family="Noto Serif TC, serif" font-weight="700" font-size="14.5" fill="#27313a">04 信任評分檢索</text>
+                <text x="740" y="150" fill="#495866" font-size="12">結合時間衰減（Temporal Decay）與多訊號評分</text>
+
+                <rect x="306" y="104" width="268" height="66" rx="12" fill="rgba(255,255,255,0.9)" stroke="#93ab9f" />
+                <text x="440" y="128" font-family="Noto Serif TC, serif" font-weight="700" font-size="14.5" fill="#27313a">05 輸出驗證（Output Validation）</text>
+                <text x="440" y="150" fill="#495866" font-size="12">檢查生成回應是否外洩機密或出現行為漂移</text>
+
+                <rect x="6" y="104" width="268" height="66" rx="12" fill="rgba(255,255,255,0.9)" stroke="#b59457" stroke-width="1.4" />
+                <text x="140" y="128" font-family="Noto Serif TC, serif" font-weight="700" font-size="14.5" fill="#27313a">06 持續監控與快照回滾</text>
+                <text x="140" y="150" fill="#495866" font-size="12">偵測寫入與檢索異常，保留鑑識快照以供還原</text>
+
+                <g stroke="#b59457" stroke-width="1.5" fill="none">
+                  <line x1="274" y1="43" x2="303" y2="43" />
+                  <line x1="574" y1="43" x2="603" y2="43" />
+                  <line x1="740" y1="76" x2="740" y2="101" />
+                  <line x1="606" y1="137" x2="577" y2="137" />
+                  <line x1="306" y1="137" x2="277" y2="137" />
+                </g>
+              </g>
+            </svg>
+          </div>
+
+          <div class="wc-card gold-accent">
+            <h3>Sunil et al. (2026) 記憶淨化閾值的校準兩難</h3>
+            <p style="margin-top:0.25rem;">
+              過濾閾值若設定過於嚴格，系統會誤殺合法記憶並大幅降低 Agent 的任務實用性；若過於寬鬆，則會讓 <em>MemoryGraft</em> 等無觸發詞的隱蔽攻擊穿透。因此實務上不存在萬能閾值，必須依業務風險容忍度動態校準，並搭配 <strong>TTL（Time-to-Live）</strong> 限制未被偵測記憶的存活窗口。
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 16: SYNTHESIS & DISCUSSION -->
+      <section class="slide" data-title="16 · 綜合對照與討論">
+        <div class="wash wash-lavender" style="width:350px;height:350px;top:-80px;right:-60px;"></div>
+        <div class="wash wash-sage" style="width:280px;height:280px;bottom:-70px;left:-60px;"></div>
+        <div class="slide-header">
+          <div>
+            <div class="eyebrow">09 · SYNTHESIS &amp; DISCUSSION</div>
+            <h2>綜合對照與讀書會討論：三大共識與思辨問題</h2>
+          </div>
+          <span class="gold-badge">Cross-Source Insights</span>
+        </div>
+
+        <div class="grid-2">
+          <div class="stack">
+            <div class="wc-card tint-blue">
+              <span class="gold-badge">OWASP LLM01 × Microsoft</span>
+              <h3 style="margin-top:0.3rem;">共識 1：機率性模型無法取代確定性應用層</h3>
+              <p style="margin-top:0.2rem;">OWASP 指出 RAG 與微調皆無法根治 Prompt Injection；Microsoft 則從架構面給出解釋——模型層天生具有機率性，唯有開發者完全可控的應用層才能建立確定性的權限邊界與人工審批閘門。</p>
+            </div>
+            <div class="wc-card tint-sage">
+              <span class="gold-badge">TopAIThreats × Microsoft × Palo Alto</span>
+              <h3 style="margin-top:0.3rem;">共識 2：無攻擊者自主越權與 MCP 新邊界</h3>
+              <p style="margin-top:0.2rem;">2026 年評估事件證明 Agent 僅因目標導向最佳化就可能自主越權，加上未受治理的 MCP 連線擴張，共同支撐了反對萬能代理與強制 Zero-Trust 授權的立場。</p>
+            </div>
+            <div class="wc-card tint-lavender">
+              <span class="gold-badge">Palo Alto × Mem0</span>
+              <h3 style="margin-top:0.3rem;">共識 3：持久性與高內部信任使記憶更隱蔽</h3>
+              <p style="margin-top:0.2rem;"><em>Semantic Imitation Heuristic</em> 讓 Agent 將檢索到的記憶視為自身成功經驗來模仿，導致單獨看無害的文字仍能引發跨會話行為漂移，必須比照生產資料庫加以治理。</p>
+            </div>
+          </div>
+
+          <div class="wc-card gold-accent stack" style="justify-content:space-around;">
+            <h3>讀書會三大思辨問題</h3>
+            <div style="border-left:2px solid var(--gold);padding-left:0.75rem;">
+              <p><span class="gold-num">01</span> <strong>確定性與自主性的張力</strong><br/>如果最安全的作法是微服務切割、確定性 HITL 與任務級授權，這會在多大程度上削弱 Agent 解決開放式複雜問題的能力？實務上該如何切分兩者的邊界？</p>
+            </div>
+            <div style="border-left:2px solid var(--gold);padding-left:0.75rem;">
+              <p><span class="gold-num">02</span> <strong>記憶淨化閾值的校準兩難</strong><br/>面對 <em>MemoryGraft</em> 這類不依賴觸發詞的經驗嫁接攻擊，除了靜態過濾閾值與 TTL 過期機制外，是否能設計出具備上下文感知能力的記憶驗證方式？</p>
+            </div>
+            <div style="border-left:2px solid var(--gold);padding-left:0.75rem;">
+              <p><span class="gold-num">03</span> <strong>合法單體組合出越權序列</strong><br/>當「讀取檔案」與「發送 HTTP 請求」各自看來都符合最小權限時，編排層應該如何定義規則並即時偵測出不合法的 <em>Chained Capability Escalation</em>？</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 17: REFERENCES & GLOSSARY -->
+      <section class="slide" data-title="17 · 參考文獻與延伸閱讀">
+        <div class="wash wash-blue" style="width:360px;height:360px;bottom:-90px;right:-60px;"></div>
+        <div class="slide-header">
+          <div>
+            <div class="eyebrow">10 · REFERENCES &amp; GLOSSARY</div>
+            <h2>參考文獻與延伸閱讀指南</h2>
+          </div>
+          <span class="gold-badge">5 Sources · 5 Key Terms</span>
+        </div>
+
+        <div class="grid-2" style="grid-template-columns: 1.06fr 0.94fr;">
+          <div class="wc-card stack" style="justify-content:space-between;">
+            <h3>五篇核心參考文獻</h3>
+            <div style="border-bottom:1px solid rgba(137,160,181,0.2);padding-bottom:0.32rem;">
+              <p><span class="gold-num">01</span> <strong>OWASP GenAI (2025)</strong> — <em>LLM01:2025 Prompt Injection</em><br/><span style="font-size:0.7rem;color:var(--ink-muted);">genai.owasp.org/llmrisk/llm01-prompt-injection/</span></p>
+            </div>
+            <div style="border-bottom:1px solid rgba(137,160,181,0.2);padding-bottom:0.32rem;">
+              <p><span class="gold-num">02</span> <strong>Top AI Threats (2026-09-13)</strong> — <em>Tool Misuse &amp; Privilege Escalation (PAT-AGT-006)</em><br/><span style="font-size:0.7rem;color:var(--ink-muted);">topaithreats.com/patterns/tool-misuse-privilege-escalation/</span></p>
+            </div>
+            <div style="border-bottom:1px solid rgba(137,160,181,0.2);padding-bottom:0.32rem;">
+              <p><span class="gold-num">03</span> <strong>Mem0</strong> — <em>AI Memory Security: Best Practices and Implementation</em><br/><span style="font-size:0.7rem;color:var(--ink-muted);">mem0.ai/library/ai-agent-security/ai-memory-security-best-practices</span></p>
+            </div>
+            <div style="border-bottom:1px solid rgba(137,160,181,0.2);padding-bottom:0.32rem;">
+              <p><span class="gold-num">04</span> <strong>Microsoft Security Blog (2026-05-14)</strong> — <em>Defense in depth for autonomous AI agents</em><br/><span style="font-size:0.7rem;color:var(--ink-muted);">microsoft.com/en-us/security/blog/2026/05/14/defense-in-depth-autonomous-ai-agents/</span></p>
+            </div>
+            <div>
+              <p><span class="gold-num">05</span> <strong>Palo Alto Networks Cyberpedia</strong> — <em>What Is the AI Agent Attack Surface?</em><br/><span style="font-size:0.7rem;color:var(--ink-muted);">paloaltonetworks.com/cyberpedia/ai-agent-attack-surface</span></p>
+            </div>
+          </div>
+
+          <div class="stack" style="justify-content:space-between;">
+            <div class="wc-card gold-accent" style="padding:0.55rem 0.85rem;">
+              <div style="display:flex;justify-content:space-between;align-items:center;">
+                <strong>1. Semantic Imitation Heuristic</strong>
+                <span class="gold-badge">arXiv:2512.16962</span>
+              </div>
+              <p style="font-size:0.8rem;margin-top:0.15rem;">指 Agent 會把檢索到的記憶當成自己過去的成功經驗加以模仿，使 <em>MemoryGraft</em> 無需觸發詞就能誘導持續性的行為漂移。</p>
+            </div>
+
+            <div class="wc-card tint-blue" style="padding:0.55rem 0.85rem;">
+              <div style="display:flex;justify-content:space-between;align-items:center;">
+                <strong>2. Model Context Protocol (MCP)</strong>
+                <span class="gold-badge">Trust Boundary</span>
+              </div>
+              <p style="font-size:0.8rem;margin-top:0.15rem;">標準化代理與外部工具資料連線的協議；由於 HTTP 授權為選配且缺乏企業治理能力，若未嚴格審查容易成為高風險攻擊入口。</p>
+            </div>
+
+            <div class="wc-card tint-sage" style="padding:0.55rem 0.85rem;">
+              <div style="display:flex;justify-content:space-between;align-items:center;">
+                <strong>3. RAG Triad</strong>
+                <span class="gold-badge">OWASP LLM01</span>
+              </div>
+              <p style="font-size:0.8rem;margin-top:0.15rem;">一種語意層輸出評估框架，透過檢驗上下文相關性、事實根據（Groundedness）與問答相關性，協助識別偏離或遭注入的回應。</p>
+            </div>
+
+            <div class="wc-card tint-lavender" style="padding:0.55rem 0.85rem;">
+              <div style="display:flex;justify-content:space-between;align-items:center;">
+                <strong>4. MITRE ATLAS</strong>
+                <span class="gold-badge">AML.T0051 / .T0054</span>
+              </div>
+              <p style="font-size:0.8rem;margin-top:0.15rem;">專門針對 AI 系統的對抗威脅知識庫，為直接注入、間接注入與越獄攻擊提供標準化的技術編號與防禦對照。</p>
+            </div>
+
+            <div class="wc-card" style="padding:0.55rem 0.85rem;">
+              <div style="display:flex;justify-content:space-between;align-items:center;">
+                <strong>5. OWASP Agentic AI Top 10 (ASI06)</strong>
+                <span class="gold-badge">Memory Poisoning</span>
+              </div>
+              <p style="font-size:0.8rem;margin-top:0.15rem;">OWASP 針對代理型應用的十大風險分類，將「記憶與上下文中毒」獨立列為 <code class="mono">ASI06</code>，以凸顯其跨會話污染的長期危害。</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+    <div class="nav-bar">
+      <div class="nav-meta" id="slideTitle">01 · 封面</div>
+      <div class="nav-controls">
+        <button class="nav-btn" id="prevBtn" aria-label="上一頁">← 上一頁</button>
+        <span class="page-indicator" id="pageIndicator">01 / 17</span>
+        <button class="nav-btn" id="nextBtn" aria-label="下一頁">下一頁 →</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      const slides = Array.from(document.querySelectorAll('.slide'));
+      const prevBtn = document.getElementById('prevBtn');
+      const nextBtn = document.getElementById('nextBtn');
+      const pageIndicator = document.getElementById('pageIndicator');
+      const slideTitle = document.getElementById('slideTitle');
+      const progressFill = document.getElementById('progressFill');
+
+      let current = 0;
+      const total = slides.length;
+
+      function pad(n) { return n < 10 ? '0' + n : String(n); }
+
+      function render(index) {
+        current = Math.max(0, Math.min(index, total - 1));
+        slides.forEach((s, i) => s.classList.toggle('active', i === current));
+        prevBtn.disabled = current === 0;
+        nextBtn.disabled = current === total - 1;
+        pageIndicator.textContent = `${pad(current + 1)} / ${pad(total)}`;
+        slideTitle.textContent = slides[current].dataset.title || '';
+        progressFill.style.width = `${((current + 1) / total) * 100}%`;
+      }
+
+      prevBtn.addEventListener('click', () => render(current - 1));
+      nextBtn.addEventListener('click', () => render(current + 1));
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') {
+          e.preventDefault(); render(current + 1);
+        } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+          e.preventDefault(); render(current - 1);
+        } else if (e.key === 'Home') {
+          e.preventDefault(); render(0);
+        } else if (e.key === 'End') {
+          e.preventDefault(); render(total - 1);
+        }
+      });
+
+      render(0);
+    })();
+  </script>
+</body>
+</html>
